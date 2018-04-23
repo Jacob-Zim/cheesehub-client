@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import CheeseList from './components/cheese-list';
+import SpotList from './components/spot-list';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import cheeseReducer from './reducers/cheese';
+import spotReducer from './reducers/skate-spot';
 
-const store = createStore(cheeseReducer, applyMiddleware(thunk));
+const store = createStore(spotReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
 <Provider store={store}>
-    <CheeseList />
+    <SpotList />
 </Provider>
 ,
  document.getElementById('root'));

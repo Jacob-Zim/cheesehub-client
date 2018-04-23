@@ -1,31 +1,31 @@
 'use strict';
 
 import {
-    FETCH_CHEESE_REQUEST,
-    FETCH_CHEESE_SUCCESS,
-    FETCH_CHEESE_ERROR
-} from '../actions/cheese';
+    FETCH_SPOT_REQUEST,
+    FETCH_SPOT_SUCCESS,
+    FETCH_SPOT_ERROR
+} from '../actions/spot';
 
 const initialState = {
-  cheeses: [],
+  spots: [],
   loading: false,
   error: null
 };
 
-export default function cheeseReducer(state = initialState, action) {
-    if (action.type === FETCH_CHEESE_REQUEST) {
+export default function spotReducer(state = initialState, action) {
+    if (action.type === FETCH_SPOT_REQUEST) {
         return Object.assign({}, state, {
             loading: true
         });
     }
-    else if (action.type === FETCH_CHEESE_SUCCESS) {
+    else if (action.type === FETCH_SPOT_SUCCESS) {
         return Object.assign({}, state, {
             loading: false,
             error: null,
-            cheeses: action.cheeses
+            spots: action.spots
         });
     }
-    else if (action.type === FETCH_CHEESE_ERROR) {
+    else if (action.type === FETCH_SPOT_ERROR) {
         return Object.assign({}, state, {
             loading: false,
             error: action.error
