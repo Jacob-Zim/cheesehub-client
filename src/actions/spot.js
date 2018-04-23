@@ -19,7 +19,7 @@ export const fetchSpotError = (err) => ({
 
 export const fetchSpots = () => dispatch => {
     return (
-        fetch(`${API_BASE_URL}/spots`, {
+        fetch(`${API_BASE_URL}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
