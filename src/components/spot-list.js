@@ -15,7 +15,8 @@ export class SpotList extends React.Component {
         if (this.props.spotList) {
             console.log(this.props);
             if (this.props.spotList.spots) {
-                list = this.props.spotList.spots.map((spot, key) => <li key={key}>{spot}</li>);
+                //this.props.spotList.spots.map((spot, key) => <li key={key}>{spot.location}</li>);
+                list = <li>{this.props.spotList.spots.location}</li>
             }
         }
         return (
