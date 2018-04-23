@@ -8,7 +8,7 @@ export const fetchSpotRequest = () => ({
 export const FETCH_SPOT_SUCCESS = 'FETCH_SPOT_SUCCESS';
 export const fetchSpotSuccess = (res) => ({
     type: FETCH_SPOT_SUCCESS,
-    cheeses: res
+    spots: res
 });
 
 export const FETCH_SPOT_ERROR = 'FETCH_SPOT_ERROR';
