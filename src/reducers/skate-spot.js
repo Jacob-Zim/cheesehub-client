@@ -3,13 +3,16 @@
 import {
     FETCH_SPOT_REQUEST,
     FETCH_SPOT_SUCCESS,
-    FETCH_SPOT_ERROR
+    FETCH_SPOT_ERROR,
+    CREATE_SPOT_INITIATE,
+    CREATE_SPOT_SUCCESS
 } from '../actions/spot';
 
 const initialState = {
   spots: [],
   loading: false,
-  error: null
+  error: null,
+  creating: false
 };
 
 export default function spotReducer(state = initialState, action) {
@@ -31,4 +34,16 @@ export default function spotReducer(state = initialState, action) {
             error: action.error
         });
     }
+    else if (action.type === CREATE_SPOT_INITIATE) {
+        return Object.assign({}, state, {
+            creating: true
+        });
+    }
+    else if (action.type === CREATE_SPOT_SUCCESS) {
+        return Object.assign({}, state, {
+            spots: [...state.spots, {lat:action.lat,lng:action.lng}],
+            creating: false
+        });
+    }
+    return state;
 }

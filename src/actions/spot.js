@@ -17,6 +17,18 @@ export const fetchSpotError = (err) => ({
     error: err
 });
 
+export const CREATE_SPOT_INITIATE = 'CREATE_SPOT_INITIATE';
+export const createSpotInitiate = () => ({
+    type: CREATE_SPOT_INITIATE
+})
+
+export const CREATE_SPOT_SUCCESS = 'CREATE_SPOT_SUCCESS';
+export const createSpotSuccess = (lat, lng) => ({
+    type: CREATE_SPOT_INITIATE,
+    lat,
+    lng
+})
+
 export const fetchSpots = () => dispatch => {
     return (
         fetch(`${API_BASE_URL}/spots`, {
@@ -29,6 +41,26 @@ export const fetchSpots = () => dispatch => {
         .then(spots => dispatch(fetchSpotSuccess(spots)))
         .catch(err => {
             dispatch(fetchSpotError(err));
+        })
+    )
+}
+
+export const createSpot = (lat, lng) => dispatch => {
+    return (
+        fetch(`${API_BASE_URL}/spots`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: {
+                lat,
+                lng
+            }
+        })
+        .then(res => res.json())
+        .then(spot => dispatch(createSpotSuccess(spot.lat, spot.lng)))
+        .catch(err => {
+            
         })
     )
 }
