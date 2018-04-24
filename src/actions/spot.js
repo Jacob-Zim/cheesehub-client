@@ -57,7 +57,7 @@ export const createSpot = (lat, lng) => dispatch => {
                 lng
             })
         })
-        .then(res => console.log(res.json()))
+        .then(res => {console.log(res);res.json()})
         .then(spot => {console.log('SPOT CREATE', spot); dispatch(createSpotSuccess(spot.lat, spot.lng))})
         .catch(err => {
             
