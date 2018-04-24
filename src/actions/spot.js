@@ -24,7 +24,7 @@ export const createSpotInitiate = () => ({
 
 export const CREATE_SPOT_SUCCESS = 'CREATE_SPOT_SUCCESS';
 export const createSpotSuccess = (lat, lng) => ({
-    type: CREATE_SPOT_INITIATE,
+    type: CREATE_SPOT_SUCCESS,
     lat,
     lng
 })
