@@ -54,8 +54,8 @@ export const createSpot = (lat, lng) => dispatch => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({"spot":{
-                "lat":lat,
-                "lng":lng
+                "lat":parseInt(lat),
+                "lng":parseInt(lng)
             }
             })
         })
