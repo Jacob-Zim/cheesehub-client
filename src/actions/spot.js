@@ -53,10 +53,10 @@ export const createSpot = (lat, lng) => dispatch => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: {
+            body: JSON.stringify({
                 lat:lat,
                 lng:lng
-            }
+            })
         })
         .then(res => res.json())
         .then(spot => {console.log('SPOT CREATE', spot); dispatch(createSpotSuccess(spot.lat, spot.lng))})
