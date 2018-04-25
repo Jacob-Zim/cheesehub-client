@@ -2,7 +2,7 @@ import React from 'react';
 
 import {connect} from 'react-redux';
 
-import {fetchSpots, createSpotInitiate, createSpot} from '../actions/spot';
+import {fetchSpots, createSpotInitiate, createSpot, createSpotForm} from '../actions/spot';
 
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
@@ -13,14 +13,19 @@ export class SpotList extends React.Component {
     }
 
     getClickedPosition(event) {
-        console.log("EVENT",event);
+        const xPos = event.pixel.x;
+        const yPos = event.pixel.y;
         const lat = event.latLng.lat();
         const lng = event.latLng.lng();
-        console.log(lat,lng);
-        this.props.dispatch(createSpot(lat, lng));
+        this.props.dispatch(createSpotForm(xPos, yPos, lat, lng));
     }
 
-    createMarker(props) {
+    createSpot(lat, lng, name, notes, rating) {
+        console.log("GOT TO THE CREATE SPOT");
+        this.props.dispatch(createSpot(lat, lng, name, notes, rating));
+    }
+
+    initiateCreateMarker(props) {
         // updates the state to allow for spot creation (creating:true)
         console.log("GOT HERE", props);
         props.dispatch(createSpotInitiate())
@@ -58,6 +63,31 @@ export class SpotList extends React.Component {
                 </GoogleMap>
                 ));
         }
+        let form;
+        if (this.props.spotList.newSpot) {
+            form = <div className="spotForm">
+                <form onSubmit={(e) => {
+                    e.preventDefault()
+                    this.createSpot(
+                        this.props.spotList.newSpot.lat, 
+                        this.props.spotList.newSpot.lng,
+                        e.target.spotName.value,
+                        e.target.spotDesc.value,
+                        e.target.spotRating.value
+                        )
+                }
+            }
+                style={ {position: 'fixed', top: this.props.spotList.newSpot.y, left: this.props.spotList.newSpot.x} }>
+                    <input id="spotName" type="text"></input>
+                    <label htmlFor="spotName">name</label>
+                    <input id="spotDesc" type="text"></input>
+                    <label htmlFor="spotDesc">notes</label>
+                    <input id="spotRating" type="number"></input>
+                    <label htmlFor="spotRating">rating</label>
+                    <button></button>
+                </form>
+            </div>
+        }
         return (
             <div className="map-container">
             <div className="map">
@@ -68,7 +98,8 @@ export class SpotList extends React.Component {
                     mapElement={<div style={{ height: `100%` }} />}
                 />
             </div>
-            <button className="createBtn" onClick={() => this.createMarker(this.props)}>+</button>
+            <button className="createBtn" onClick={() => this.initiateCreateMarker(this.props)}>+</button>
+            {form}
             </div>
         );
     }
