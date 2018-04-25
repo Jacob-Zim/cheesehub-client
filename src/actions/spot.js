@@ -46,6 +46,7 @@ export const fetchSpots = () => dispatch => {
 }
 
 export const createSpot = (lat, lng) => dispatch => {
+    console.log("IN THE ACTION",lat,lng);
     return (
         fetch(`${API_BASE_URL}/spots`, {
             method: 'POST',
@@ -53,8 +54,8 @@ export const createSpot = (lat, lng) => dispatch => {
                 'Content-Type': 'application/json'
             },
             body: {
-                lat,
-                lng
+                lat:lat,
+                lng:lng
             }
         })
         .then(res => res.json())
