@@ -47,17 +47,17 @@ export const fetchSpots = () => dispatch => {
 
 export const createSpot = (lat, lng) => dispatch => {
     console.log("IN THE ACTION",lat,lng);
+
+    var data = new URLSearchParams();
+    data.append('lat', lat);
+    data.append('lng', lng);
     return (
         fetch(`${API_BASE_URL}/spots`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: {spot:{
-                lat:lat,
-                lng:lng
-            }
-            }
+            body: data
         })
         .then(res => res.json())
         .then(spot => {console.log('SPOT CREATE', spot); dispatch(createSpotSuccess(spot.lat, spot.lng))})
