@@ -13,6 +13,7 @@ export class SpotList extends React.Component {
     }
 
     getClickedPosition(event) {
+        console.log("EVENT",event);
         const lat = event.latLng.lat();
         const lng = event.latLng.lng();
         console.log(lat,lng);
