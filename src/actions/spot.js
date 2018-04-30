@@ -11,6 +11,17 @@ export const fetchSpotSuccess = (res) => ({
     spots: res
 });
 
+export const FETCH_ONE_SPOT_SUCCESS = 'FETCH_ONE_SPOT_SUCCESS';
+export const fetchOneSpotSuccess = (res) => ({
+    type: FETCH_ONE_SPOT_SUCCESS,
+    hoverSpot: res
+});
+
+export const CLOSE_SPOT = 'CLOSE_SPOT';
+export const closeSpot = () => ({
+    type: CLOSE_SPOT
+})
+
 export const FETCH_SPOT_ERROR = 'FETCH_SPOT_ERROR';
 export const fetchSpotError = (err) => ({
     type: FETCH_SPOT_ERROR,
@@ -20,6 +31,23 @@ export const fetchSpotError = (err) => ({
 export const CREATE_SPOT_INITIATE = 'CREATE_SPOT_INITIATE';
 export const createSpotInitiate = () => ({
     type: CREATE_SPOT_INITIATE
+})
+
+export const EDIT_SPOT = 'EDIT_SPOT';
+export const editSpot = () => ({
+    type: EDIT_SPOT
+})
+
+export const DELETE_SPOT_INITIATE = 'DELETE_SPOT_INITIATE';
+export const deleteSpotInitiate = () => ({
+    type: DELETE_SPOT_INITIATE
+})
+
+export const DELETE_SPOT_SUCCESS = 'DELETE_SPOT_SUCCESS';
+export const deleteSpotSuccess = (lat, lng) => ({
+    type: DELETE_SPOT_SUCCESS,
+    lat,
+    lng
 })
 
 export const CREATE_SPOT_SUCCESS = 'CREATE_SPOT_SUCCESS';
@@ -41,6 +69,19 @@ export const createSpotForm = (x, y, lat, lng) => ({
     lng
 })
 
+export const EDIT_SPOT_SUCCESS = 'EDIT_SPOT_SUCCESS';
+export const editSpotSuccess = (spot) => ({
+    type: EDIT_SPOT_SUCCESS,
+    spot
+})
+
+export const SET_MAP = 'SET_MAP';
+export const setMap = (latlng, zoom) => ({
+    type: SET_MAP,
+    latlng,
+    zoom
+})
+
 export const fetchSpots = () => dispatch => {
     return (
         fetch(`${API_BASE_URL}/spots`, {
@@ -58,7 +99,6 @@ export const fetchSpots = () => dispatch => {
 }
 
 export const createSpot = (lat, lng, name, notes, rating) => dispatch => {
-    console.log("IN THE ACTION",lat,lng);
 
     var data = new URLSearchParams();
     data.append('lat', lat);
@@ -80,4 +120,80 @@ export const createSpot = (lat, lng, name, notes, rating) => dispatch => {
             
         })
     )
+}
+
+export const fetchSpot = (lat, lng) => dispatch => {
+    let id;
+    fetch(`${API_BASE_URL}/spots`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(spots => {
+        id = spots.filter(spot => spot.lat === lat && spot.lng === lng)[0].id;
+        return (fetch(`${API_BASE_URL}/spots/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        )
+    })
+    .then(res => res.json())
+    .then(spot => dispatch(fetchOneSpotSuccess(spot)));
+}
+
+export const deleteSpot = (lat, lng) => dispatch => {
+    let id;
+    fetch(`${API_BASE_URL}/spots`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(spots => {
+        id = spots.filter(spot => spot.lat === lat && spot.lng === lng)[0].id;
+        return (fetch(`${API_BASE_URL}/spots/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        )
+    })
+    .then(res => res.json())
+    .then(res => dispatch(deleteSpotSuccess(lat, lng)));
+}
+
+export const submitEditSpot = (lat, lng, name, notes, rating) => dispatch => {
+    let id;
+    var data = new URLSearchParams();
+    data.append('lat', lat);
+    data.append('lng', lng);
+    data.append('name', name);
+    data.append('notes', notes);
+    data.append('rating', rating);
+    fetch(`${API_BASE_URL}/spots`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(spots => {
+        id = spots.filter(spot => spot.lat === lat && spot.lng === lng)[0].id;
+        return (fetch(`${API_BASE_URL}/spots/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: data,
+        })
+        )
+    })
+    .then(res => res.json())
+    .then(spot =>{ console.log(spot);dispatch(editSpotSuccess(spot))});
 }

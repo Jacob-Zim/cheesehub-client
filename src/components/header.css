@@ -1,0 +1,22 @@
+.banner {
+    position: fixed;
+    width:66.6%;
+    text-align: center;
+    z-index: 5;
+    background: rgba(32, 106, 218, 0.4);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.skateboardImg {
+    position: relative;
+    width: 22%;
+    bottom: 20px;
+}
+
+.cite {
+    position: fixed;
+    bottom: 5px;
+    text-align: center;
+    font-size: .4em;
+}
