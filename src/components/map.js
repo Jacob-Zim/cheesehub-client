@@ -97,7 +97,6 @@ export class SpotList extends React.Component {
                 <GoogleMap 
                 zoom={props.zoom} //props.defaultZoom
                 center={props.center} //props.center
-                //onCenterChanged={() => {console.log(contextTypes);this.props.setMap(getCenter(), getZoom())}}
                 onDblClick={e => {this.getClickedPosition(e); if (this.props.spotList.hoverSpot) {this.props.closeSpot()}}}
                 >
                     {list}
@@ -132,6 +131,14 @@ export class SpotList extends React.Component {
         }
 
         if (this.props.spotList.hoverSpot) {
+            let buttons;
+            if (this.props.spotList.hoverSpot.userId === this.props.auth.currentUser) {
+                buttons = 
+                <div>
+                    <button onClick={() => {this.props.editSpot()}}>EDIT</button>
+                    <button onClick={() => {this.props.deleteSpot(this.props.spotList.hoverSpot.lat, this.props.spotList.hoverSpot.lng, this.props.auth.authToken, this.props.auth.currentUser)}}>DELETE</button>
+                </div>
+            }
             MyMap = withScriptjs(withGoogleMap((props) => 
                 <GoogleMap 
                 zoom={props.zoom}
@@ -147,8 +154,7 @@ export class SpotList extends React.Component {
                         {this.props.spotList.hoverSpot.name}
                         {this.props.spotList.hoverSpot.notes}
                         {this.props.spotList.hoverSpot.rating}
-                        <button onClick={() => {this.props.editSpot()}}>EDIT</button>
-                        <button onClick={() => {this.props.deleteSpot(this.props.spotList.hoverSpot.lat, this.props.spotList.hoverSpot.lng, this.props.auth.authToken, this.props.auth.currentUser)}}>DELETE</button>
+                        {buttons}
                     </div>
                 </div>
             </InfoBox>

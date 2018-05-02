@@ -16,6 +16,11 @@ export const clearAuth = () => ({
     type: CLEAR_AUTH
 });
 
+export const REGISTER = 'REGISTER';
+export const register = () => ({
+    type: REGISTER
+})
+
 export const AUTH_REQUEST = 'AUTH_REQUEST';
 export const authRequest = () => ({
     type: AUTH_REQUEST
@@ -39,6 +44,27 @@ const storeAuthInfo = (authToken, dispatch) => {
     dispatch(authSuccess(decodedToken.user.id));
     saveAuthToken(authToken);
 };
+
+export const registerUser = (username, password) => dispatch => {
+    var data = new URLSearchParams();
+    data.append('username', username);
+    data.append('password', password);
+    return fetch(`${API_BASE_URL}/users`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/x-www-form-urlencoded'
+        },
+        body: data
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .catch(err => {
+            const {reason, message, location} = err;
+            if (reason === 'ValidationError') {
+            }
+        });
+};
+
 
 export const login = (username, password) => dispatch => {
     dispatch(authRequest());

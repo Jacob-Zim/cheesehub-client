@@ -62,7 +62,13 @@ export default function spotReducer(state = initialState, action) {
     else if (action.type === DELETE_SPOT_SUCCESS) {
         const lat = action.lat;
         const lng = action.lng;
-        const newSpots = state.spots.filter(spot => spot.lat !== lat || spot.lng !== lng);
+        const testSpot = state.spots.filter(spot => spot.lat === lat || spot.lng === lng);
+        let newSpots;
+        if (testSpot[0].userId === action.userId) {
+            newSpots = state.spots.filter(spot => spot.lat !== lat || spot.lng !== lng);
+        } else {
+            newSpots = state.spots;
+        }
         return Object.assign({}, state, {
             spots: newSpots,
             deleting: false,
@@ -78,7 +84,8 @@ export default function spotReducer(state = initialState, action) {
                   lng:action.lng,
                   name:action.name,
                   notes:action.notes,
-                  rating:action.rating
+                  rating:action.rating,
+                  userId:action.userId
                 }
             ],
             creating: false,

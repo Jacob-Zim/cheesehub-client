@@ -3,16 +3,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Login from './login';
+import Register from './register';
 
-import {clearAuth} from '../actions/auth';
+import {clearAuth, register} from '../actions/auth';
 
 import './header.css';
 
 export class Header extends React.Component {
    render() {
        let logout;
+       let registers;
        if (this.props.auth.currentUser) {
            logout = <button onClick={() => this.props.dispatch(clearAuth())}>logout</button>
+       }
+       if (!this.props.auth.currentUser) {
+           registers = <button onClick={() => this.props.dispatch(register())}>Register</button>
+       }
+       if (this.props.auth.register) {
+           registers = <Register />
        }
     return (
         <div className="banner">
@@ -21,6 +29,7 @@ export class Header extends React.Component {
             <div className="cite">Icon made from <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a> is licensed by CC BY 3.0</div>
         <Login />
         {logout}
+        {registers}
         </div>
     )
 };

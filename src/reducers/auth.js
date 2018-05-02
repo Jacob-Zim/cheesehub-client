@@ -3,13 +3,15 @@ import {
     CLEAR_AUTH,
     AUTH_REQUEST,
     AUTH_SUCCESS,
-    AUTH_ERROR
+    AUTH_ERROR,
+    REGISTER
 } from '../actions/auth';
 const initialState = {
   authToken: null,
   currentUser: null,
   loading: false,
-  error: null
+  error: null,
+  register: false
 };
 
 export default function authReducer(state = initialState, action) {
@@ -43,6 +45,10 @@ export default function authReducer(state = initialState, action) {
             loading: false,
             error: action.error
         });
-    } 
+    } else if (action.type === REGISTER) {
+        return Object.assign({}, state, {
+            register:!state.register
+        });
+    }
     return state;
 }

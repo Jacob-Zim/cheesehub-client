@@ -15,7 +15,7 @@ export class LoginForm extends React.Component {
                     this.onSubmit({username: e.target.username.value, password: e.target.password.value})}
                 }>
                 <label htmlFor="username">Username</label>
-                    <input name="username" type="name"></input>
+                    <input name="username" type="text"></input>
                 <label htmlFor="password">Password</label>
                     <input name="password" type="password"></input>
                 <button>

@@ -44,20 +44,22 @@ export const deleteSpotInitiate = () => ({
 })
 
 export const DELETE_SPOT_SUCCESS = 'DELETE_SPOT_SUCCESS';
-export const deleteSpotSuccess = (lat, lng) => ({
+export const deleteSpotSuccess = (lat, lng, userId) => ({
     type: DELETE_SPOT_SUCCESS,
     lat,
-    lng
+    lng,
+    userId
 })
 
 export const CREATE_SPOT_SUCCESS = 'CREATE_SPOT_SUCCESS';
-export const createSpotSuccess = (lat, lng, name, notes, rating) => ({
+export const createSpotSuccess = (lat, lng, name, notes, rating, userId) => ({
     type: CREATE_SPOT_SUCCESS,
     lat,
     lng,
     name,
     notes,
-    rating
+    rating,
+    userId
 })
 
 export const CREATE_SPOT_FORM = 'CREATE_SPOT_FORM';
@@ -117,7 +119,7 @@ export const createSpot = (lat, lng, name, notes, rating, authToken, userId) => 
             body: data
         })
         .then(res => res.json())
-        .then(spot => {dispatch(createSpotSuccess(spot.lat, spot.lng, spot.name, spot.notes, spot.rating))})
+        .then(spot => {dispatch(createSpotSuccess(spot.lat, spot.lng, spot.name, spot.notes, spot.rating, userId))})
         .catch(err => {
             
         })
@@ -171,7 +173,7 @@ export const deleteSpot = (lat, lng, authToken, userId) => dispatch => {
         )
     })
     .then(res => res.json())
-    .then(res => {dispatch(deleteSpotSuccess(lat, lng))});
+    .then(res => {dispatch(deleteSpotSuccess(lat, lng, userId))});
 }
 
 export const submitEditSpot = (lat, lng, name, notes, rating, authToken, userId) => dispatch => {
