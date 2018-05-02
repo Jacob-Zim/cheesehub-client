@@ -6,6 +6,8 @@
     background: rgba(32, 106, 218, 0.4);
     left: 50%;
     transform: translateX(-50%);
+    color:white;
+    text-shadow: 1px 1px 1px black;
 }
 
 .skateboardImg {
@@ -15,6 +17,8 @@
 }
 
 .cite {
+    color:black;
+    text-shadow: none;
     position: fixed;
     bottom: 5px;
     text-align: center;

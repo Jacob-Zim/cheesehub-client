@@ -98,18 +98,20 @@ export const fetchSpots = () => dispatch => {
     )
 }
 
-export const createSpot = (lat, lng, name, notes, rating) => dispatch => {
+export const createSpot = (lat, lng, name, notes, rating, authToken, userId) => (dispatch) => {
 
-    var data = new URLSearchParams();
+    const data = new URLSearchParams();
     data.append('lat', lat);
     data.append('lng', lng);
     data.append('name', name);
     data.append('notes', notes);
     data.append('rating', rating);
+    data.append('userId', userId)
     return (
         fetch(`${API_BASE_URL}/spots`, {
             method: 'POST',
             headers: {
+                'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: data
@@ -145,7 +147,9 @@ export const fetchSpot = (lat, lng) => dispatch => {
     .then(spot => dispatch(fetchOneSpotSuccess(spot)));
 }
 
-export const deleteSpot = (lat, lng) => dispatch => {
+export const deleteSpot = (lat, lng, authToken, userId) => dispatch => {
+    const data = new URLSearchParams();
+    data.append('userId', userId);
     let id;
     fetch(`${API_BASE_URL}/spots`, {
         method: 'GET',
@@ -159,16 +163,18 @@ export const deleteSpot = (lat, lng) => dispatch => {
         return (fetch(`${API_BASE_URL}/spots/${id}`, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: data
         })
         )
     })
     .then(res => res.json())
-    .then(res => dispatch(deleteSpotSuccess(lat, lng)));
+    .then(res => {dispatch(deleteSpotSuccess(lat, lng))});
 }
 
-export const submitEditSpot = (lat, lng, name, notes, rating) => dispatch => {
+export const submitEditSpot = (lat, lng, name, notes, rating, authToken, userId) => dispatch => {
     let id;
     var data = new URLSearchParams();
     data.append('lat', lat);
@@ -176,6 +182,7 @@ export const submitEditSpot = (lat, lng, name, notes, rating) => dispatch => {
     data.append('name', name);
     data.append('notes', notes);
     data.append('rating', rating);
+    data.append('userId', userId);
     fetch(`${API_BASE_URL}/spots`, {
         method: 'GET',
         headers: {
@@ -188,6 +195,7 @@ export const submitEditSpot = (lat, lng, name, notes, rating) => dispatch => {
         return (fetch(`${API_BASE_URL}/spots/${id}`, {
             method: 'PUT',
             headers: {
+                'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: data,
@@ -195,5 +203,5 @@ export const submitEditSpot = (lat, lng, name, notes, rating) => dispatch => {
         )
     })
     .then(res => res.json())
-    .then(spot =>{ console.log(spot);dispatch(editSpotSuccess(spot))});
+    .then(spot => {dispatch(editSpotSuccess(spot))});
 }

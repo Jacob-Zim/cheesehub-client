@@ -7,6 +7,8 @@ import { bindActionCreators } from 'redux';
 
 import Header from './header';
 
+import './map.css';
+
 import {
     fetchSpots,
     fetchSpot,
@@ -33,7 +35,9 @@ const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
 export class SpotList extends React.Component {
 
     componentDidMount() {
-        this.props.fetchSpots();
+        setTimeout(()=>{
+            this.props.fetchSpots();
+          },750);
     }
 
     getClickedPosition(event) {
@@ -42,10 +46,6 @@ export class SpotList extends React.Component {
         const lat = event.latLng.lat();
         const lng = event.latLng.lng();
         this.props.createSpotForm(xPos, yPos, lat, lng);
-    }
-
-    createSpot(lat, lng, name, notes, rating) {
-        this.props.createSpot(lat, lng, name, notes, rating);
     }
 
     initiateCreateMarker(props) {
@@ -108,12 +108,14 @@ export class SpotList extends React.Component {
             form = <div className="spotForm">
                 <form onSubmit={(e) => {
                     e.preventDefault()
-                    this.createSpot(
+                    this.props.createSpot(
                         this.props.spotList.newSpot.lat,
                         this.props.spotList.newSpot.lng,
                         e.target.spotName.value,
                         e.target.spotDesc.value,
-                        e.target.spotRating.value
+                        e.target.spotRating.value,
+                        this.props.auth.authToken,
+                        this.props.auth.currentUser
                         )
                 }
             }
@@ -146,7 +148,7 @@ export class SpotList extends React.Component {
                         {this.props.spotList.hoverSpot.notes}
                         {this.props.spotList.hoverSpot.rating}
                         <button onClick={() => {this.props.editSpot()}}>EDIT</button>
-                        <button onClick={() => {this.props.deleteSpot(this.props.spotList.hoverSpot.lat, this.props.spotList.hoverSpot.lng)}}>DELETE</button>
+                        <button onClick={() => {this.props.deleteSpot(this.props.spotList.hoverSpot.lat, this.props.spotList.hoverSpot.lng, this.props.auth.authToken, this.props.auth.currentUser)}}>DELETE</button>
                     </div>
                 </div>
             </InfoBox>
@@ -174,7 +176,9 @@ export class SpotList extends React.Component {
                         this.props.spotList.hoverSpot.lng,
                         e.target.spotName.value,
                         e.target.spotDesc.value,
-                        e.target.spotRating.value
+                        e.target.spotRating.value,
+                        this.props.auth.authToken,
+                        this.props.auth.currentUser
                         );
                     }}>
                         <input id="spotName" type="text"></input>
@@ -185,7 +189,7 @@ export class SpotList extends React.Component {
                         <label htmlFor="spotRating">rating</label>
                         <button>EDIT</button>
                     </form>
-                        <button onClick={() => {this.props.deleteSpot(this.props.spotList.hoverSpot.lat, this.props.spotList.hoverSpot.lng)}}>DELETE</button>
+                        <button onClick={() => {this.props.deleteSpot(this.props.spotList.hoverSpot.lat, this.props.spotList.hoverSpot.lng, this.props.auth.authToken, this.props.auth.currentUser)}}>DELETE</button>
                     </div>
                 </div>
             </InfoBox>
@@ -214,7 +218,8 @@ export class SpotList extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    spotList: state
+    spotList: state.spot,
+    auth: state.auth
 });
 
 const mapDispatchToProps = (dispatch) => {
