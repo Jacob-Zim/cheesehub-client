@@ -5,6 +5,7 @@ import {
     FETCH_SPOT_SUCCESS,
     FETCH_SPOT_ERROR,
     CREATE_SPOT_INITIATE,
+    CREATE_SPOT_CANCEL,
     CREATE_SPOT_SUCCESS,
     CREATE_SPOT_FORM,
     DELETE_SPOT_INITIATE,
@@ -13,6 +14,7 @@ import {
     CLOSE_SPOT,
     EDIT_SPOT,
     EDIT_SPOT_SUCCESS,
+    CANCEL_EDIT,
     SET_MAP
 } from '../actions/spot';
 
@@ -54,6 +56,12 @@ export default function spotReducer(state = initialState, action) {
             creating: true
         });
     }
+    else if (action.type === CREATE_SPOT_CANCEL) {
+        return Object.assign({}, state, {
+            creating: false,
+            newSpot: false
+        });
+    }
     else if (action.type === DELETE_SPOT_INITIATE) {
         return Object.assign({}, state, {
             deleting: true
@@ -73,6 +81,7 @@ export default function spotReducer(state = initialState, action) {
             spots: newSpots,
             deleting: false,
             hoverSpot: false,
+            editing: false,
             defaultCenter: { lat:action.lat, lng:action.lng}
         });
     }
@@ -85,7 +94,9 @@ export default function spotReducer(state = initialState, action) {
                   name:action.name,
                   notes:action.notes,
                   rating:action.rating,
-                  userId:action.userId
+                  userId:action.userId,
+                  image:action.image,
+                  address:action.address
                 }
             ],
             creating: false,
@@ -107,7 +118,13 @@ export default function spotReducer(state = initialState, action) {
     }
     else if (action.type === CLOSE_SPOT) {
         return Object.assign({}, state, {
-            hoverSpot: false
+            hoverSpot: false,
+            editing: false
+        });
+    }
+    else if (action.type === CANCEL_EDIT) {
+        return Object.assign({}, state, {
+            editing: false
         });
     }
     else if (action.type === EDIT_SPOT) {

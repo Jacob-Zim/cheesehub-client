@@ -21,6 +21,7 @@ export class Register extends React.Component {
                 <label htmlFor="password">password</label>
                 <input name="password" type="password"></input>
                 <button>submit</button>
+                <button onClick={() => this.props.dispatch(register())}>cancel</button>
             </form>
         )
     }

@@ -33,9 +33,19 @@ export const createSpotInitiate = () => ({
     type: CREATE_SPOT_INITIATE
 })
 
+export const CREATE_SPOT_CANCEL = 'CREATE_SPOT_CANCEL';
+export const createSpotCancel = () => ({
+    type: CREATE_SPOT_CANCEL
+})
+
 export const EDIT_SPOT = 'EDIT_SPOT';
 export const editSpot = () => ({
     type: EDIT_SPOT
+})
+
+export const CANCEL_EDIT = 'CANCEL_EDIT';
+export const cancelEdit = () => ({
+    type: CANCEL_EDIT
 })
 
 export const DELETE_SPOT_INITIATE = 'DELETE_SPOT_INITIATE';
@@ -52,14 +62,16 @@ export const deleteSpotSuccess = (lat, lng, userId) => ({
 })
 
 export const CREATE_SPOT_SUCCESS = 'CREATE_SPOT_SUCCESS';
-export const createSpotSuccess = (lat, lng, name, notes, rating, userId) => ({
+export const createSpotSuccess = (lat, lng, name, notes, rating, address, image, userId) => ({
     type: CREATE_SPOT_SUCCESS,
     lat,
     lng,
     name,
     notes,
     rating,
-    userId
+    userId,
+    address,
+    image
 })
 
 export const CREATE_SPOT_FORM = 'CREATE_SPOT_FORM';
@@ -100,7 +112,7 @@ export const fetchSpots = () => dispatch => {
     )
 }
 
-export const createSpot = (lat, lng, name, notes, rating, authToken, userId) => (dispatch) => {
+export const createSpot = (lat, lng, name, notes, rating, address, image, authToken, userId) => (dispatch) => {
 
     const data = new URLSearchParams();
     data.append('lat', lat);
@@ -108,7 +120,9 @@ export const createSpot = (lat, lng, name, notes, rating, authToken, userId) => 
     data.append('name', name);
     data.append('notes', notes);
     data.append('rating', rating);
-    data.append('userId', userId)
+    data.append('userId', userId);
+    data.append('image', image);
+    data.append('address', address)
     return (
         fetch(`${API_BASE_URL}/spots`, {
             method: 'POST',
@@ -119,7 +133,7 @@ export const createSpot = (lat, lng, name, notes, rating, authToken, userId) => 
             body: data
         })
         .then(res => res.json())
-        .then(spot => {dispatch(createSpotSuccess(spot.lat, spot.lng, spot.name, spot.notes, spot.rating, userId))})
+        .then(spot => {dispatch(createSpotSuccess(spot.lat, spot.lng, spot.name, spot.notes, spot.rating, spot.address, spot.image, userId))})
         .catch(err => {
             
         })
@@ -176,7 +190,7 @@ export const deleteSpot = (lat, lng, authToken, userId) => dispatch => {
     .then(res => {dispatch(deleteSpotSuccess(lat, lng, userId))});
 }
 
-export const submitEditSpot = (lat, lng, name, notes, rating, authToken, userId) => dispatch => {
+export const submitEditSpot = (lat, lng, name, notes, rating, address, image, authToken, userId) => dispatch => {
     let id;
     var data = new URLSearchParams();
     data.append('lat', lat);
@@ -185,6 +199,8 @@ export const submitEditSpot = (lat, lng, name, notes, rating, authToken, userId)
     data.append('notes', notes);
     data.append('rating', rating);
     data.append('userId', userId);
+    data.append('address', address);
+    data.append('image', image);
     fetch(`${API_BASE_URL}/spots`, {
         method: 'GET',
         headers: {

@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css?family=PT+Sans");
+
+.skateSpotImg {
+    width: 200px;
+    height: 200px;
+}
+
+.infoBoxBkg {
+    background: url("https://www.asus.com/ae-en/Commercial-Laptops/ASUS_Chromebook_C200/websites/global/products/xOp8ZzclO1bZH0Ra/img/home//bg00.png");
+    background-size: cover;
+    border: black 1px solid;
+    border-radius: 1.5em;
+    opacity: 0.9;
+    padding: 12px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.editDeleteBtns {
+    position: relative;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.deleteBtn:hover {
+    background-color: rgba(129, 31, 31, 0.678);
+}
+
+.deleteBtn {
+    width: 80px;
+    margin-left: 10px;
+    border: black 1px solid;
+    border-radius: 2em;
+    background-color: none;
+}
+
+.editBtn:hover {
+    background-color: rgba(65, 124, 180, 0.678);
+}
+
+.editBtn {
+    width: 80px;
+    margin-right: 10px;
+    border: black 1px solid;
+    border-radius: 2em;
+    background-color: none;
+}
+
+.infoBoxCont {
+    font-family:"PT Sans";
+}
+
+.imgUrl {
+    text-align: right;
+}
+
+.editSubmitBtns {
+    position: relative;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.editBtnSubmit {
+    width: 70px;
+    margin-right: 5px;
+    border: black 1px solid;
+    border-radius: 2em;
+    background-color: none;
+}
+
+.editBtnSubmit:hover {
+    background-color: rgba(13, 245, 44, 0.76);
+}
+
+.cancelEditBtn {
+    width: 70px;
+    margin-left: 5px;
+    border: black 1px solid;
+    border-radius: 2em;
+    background-color: none;
+}
+
+.cancelEditBtn:hover {
+    background-color: rgba(253, 73, 60, 0.795);
+}
+
+.spotName {
+    margin: 0;
+    text-align: center;
+}
+
+.spotRating {
+    position: absolute;
+    font-size: 20px;
+    margin: 0;
+    left: 10px;
+    top: 5px;
+}   
+
+.ratingStar {
+    position: absolute;
+    top: 7px;
+    left: 25px;
+    width: 18px;
+    height: 18px;
+}
+
+.spotAddress {
+    margin: 0;
+    text-align: center;
+}
+
+.spotNotes {
+    margin: 0;
+    text-align: center;
+}
+
+.skateSpotImg {
+    border: solid 1.5px black;
+    border-radius: .2em;
+}
+
+.deleteBtnEditModeCont {
+    position: relative;
+    text-align: center;
+}
+
+.deleteBtnEditModeBtn {
+    width: 80px;
+    border: black 1px solid;
+    border-radius: 2em;
+    background-color: none;
+}
+
+.deleteBtnEditModeBtn:hover {
+    background-color: rgba(129, 31, 31, 0.678);
+}
+
+.infoBoxCloseBtn {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    background: rgba(150, 28, 28, 0.61);
+    padding-bottom: 0;
+    font-weight: 700;
+    border-radius: 1.5em;
+}

@@ -13,6 +13,7 @@ import {
     fetchSpots,
     fetchSpot,
     createSpotInitiate, 
+    createSpotCancel,
     deleteSpotInitiate, 
     createSpot, 
     deleteSpot, 
@@ -20,6 +21,7 @@ import {
     closeSpot,
     editSpot,
     submitEditSpot,
+    cancelEdit,
     setMap
 } from '../actions/spot';
 
@@ -97,7 +99,7 @@ export class SpotList extends React.Component {
                 <GoogleMap 
                 zoom={props.zoom} //props.defaultZoom
                 center={props.center} //props.center
-                onDblClick={e => {this.getClickedPosition(e); if (this.props.spotList.hoverSpot) {this.props.closeSpot()}}}
+                onDblClick={e => {if (this.props.auth.currentUser){this.getClickedPosition(e)}; if (this.props.spotList.hoverSpot) {this.props.closeSpot()}}}
                 >
                     {list}
                 </GoogleMap>
@@ -113,6 +115,8 @@ export class SpotList extends React.Component {
                         e.target.spotName.value,
                         e.target.spotDesc.value,
                         e.target.spotRating.value,
+                        e.target.spotAddress.value,
+                        e.target.spotImage.value,
                         this.props.auth.authToken,
                         this.props.auth.currentUser
                         )
@@ -125,7 +129,12 @@ export class SpotList extends React.Component {
                     <label htmlFor="spotDesc">notes</label>
                     <input id="spotRating" type="number"></input>
                     <label htmlFor="spotRating">rating</label>
-                    <button></button>
+                    <input id="spotAddress" type="text"></input>
+                    <label htmlFor="spotAddress">Address</label>
+                    <input id="spotImage" type="text"></input>
+                    <label htmlFor="spotImage">Image Url</label>
+                    <button>Submit</button>
+                    <button onClick={() => this.props.createSpotCancel()}>Close</button>
                 </form>
             </div>
         }
@@ -134,9 +143,9 @@ export class SpotList extends React.Component {
             let buttons;
             if (this.props.spotList.hoverSpot.userId === this.props.auth.currentUser) {
                 buttons = 
-                <div>
-                    <button onClick={() => {this.props.editSpot()}}>EDIT</button>
-                    <button onClick={() => {this.props.deleteSpot(this.props.spotList.hoverSpot.lat, this.props.spotList.hoverSpot.lng, this.props.auth.authToken, this.props.auth.currentUser)}}>DELETE</button>
+                <div className="editDeleteBtns">
+                    <button className="editBtn" onClick={() => {this.props.editSpot()}}>EDIT</button>
+                    <button className="deleteBtn" onClick={() => {this.props.deleteSpot(this.props.spotList.hoverSpot.lat, this.props.spotList.hoverSpot.lng, this.props.auth.authToken, this.props.auth.currentUser)}}>DELETE</button>
                 </div>
             }
             MyMap = withScriptjs(withGoogleMap((props) => 
@@ -149,13 +158,19 @@ export class SpotList extends React.Component {
             defaultPosition= {new google.maps.LatLng(this.props.spotList.hoverSpot.lat, this.props.spotList.hoverSpot.lng)}
             options={{ closeBoxURL: ``, enableEventPropagation: true }}
             >
-                <div style={{ backgroundColor: `blue`, opacity: 0.5, padding: `12px` }}>
-                    <div style={{ fontSize: `16px`, fontColor: `black` }}>
-                        {this.props.spotList.hoverSpot.name}
-                        {this.props.spotList.hoverSpot.notes}
-                        {this.props.spotList.hoverSpot.rating}
+                <div className="infoBoxBkg">
+                    <section className="infoBoxCont" style={{ fontSize: `16px`, fontColor: `black` }}>
+                        <button className="infoBoxCloseBtn" onClick={() => this.props.closeSpot()}>X</button>
+                        <p className="spotName">{this.props.spotList.hoverSpot.name}</p>
+                        <div className="ratingGroup">
+                        <p className="spotRating">{this.props.spotList.hoverSpot.rating}</p>
+                        <img className="ratingStar" src="http://www.clker.com/cliparts/6/b/a/9/13501528831665215180star.svg" />
+                        </div>
+                        <p className="spotAddress">{this.props.spotList.hoverSpot.address}</p>
+                        <img className="skateSpotImg" src={this.props.spotList.hoverSpot.image} alt=""/>
+                        <p className="spotNotes">{this.props.spotList.hoverSpot.notes}</p>
                         {buttons}
-                    </div>
+                    </section>
                 </div>
             </InfoBox>
                     {list}
@@ -173,8 +188,8 @@ export class SpotList extends React.Component {
             defaultPosition= {new google.maps.LatLng(this.props.spotList.hoverSpot.lat, this.props.spotList.hoverSpot.lng)}
             options={{ closeBoxURL: ``, enableEventPropagation: true }}
             >
-                <div style={{ backgroundColor: `blue`, opacity: 0.5, padding: `12px` }}>
-                    <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
+                <div className="infoBoxBkg" style={{ paddingLeft: `15px`, paddingRight: `20px` }}>
+                    <section className="infoBoxCont" style={{ fontSize: `16px`, fontColor: `black` }}>
                     <form onSubmit={(e) => {
                         e.preventDefault();
                         this.props.submitEditSpot(
@@ -183,20 +198,32 @@ export class SpotList extends React.Component {
                         e.target.spotName.value,
                         e.target.spotDesc.value,
                         e.target.spotRating.value,
+                        e.target.spotAddress.value,
+                        e.target.spotImage.value,
                         this.props.auth.authToken,
                         this.props.auth.currentUser
                         );
                     }}>
+                        <button className="infoBoxCloseBtn" onClick={() => this.props.closeSpot()}>X</button>
                         <input id="spotName" type="text"></input>
                         <label htmlFor="spotName">name</label>
                         <input id="spotDesc" type="text"></input>
                         <label htmlFor="spotDesc">notes</label>
                         <input id="spotRating" type="number"></input>
                         <label htmlFor="spotRating">rating</label>
-                        <button>EDIT</button>
+                        <input id="spotAddress" type="text"></input>
+                        <label htmlFor="spotAddress">address</label>
+                        <input className="imgUrlInp" id="spotImage" type="text"></input>
+                        <label className="imgUrl" htmlFor="spotImage">image</label>
+                        <section className="editSubmitBtns">
+                            <button className="editBtnSubmit">SUBMIT</button>
+                            <button className="cancelEditBtn" onClick={() => this.props.cancelEdit()}>CANCEL</button>
+                        </section>
                     </form>
-                        <button onClick={() => {this.props.deleteSpot(this.props.spotList.hoverSpot.lat, this.props.spotList.hoverSpot.lng, this.props.auth.authToken, this.props.auth.currentUser)}}>DELETE</button>
-                    </div>
+                        <section className="deleteBtnEditModeCont">
+                        <button className="deleteBtnEditModeBtn"onClick={() => {this.props.deleteSpot(this.props.spotList.hoverSpot.lat, this.props.spotList.hoverSpot.lng, this.props.auth.authToken, this.props.auth.currentUser)}}>DELETE</button>
+                        </section>
+                    </section>
                 </div>
             </InfoBox>
                     {list}
@@ -233,12 +260,14 @@ const mapDispatchToProps = (dispatch) => {
         fetchSpots,
         fetchSpot,
         createSpotInitiate, 
+        createSpotCancel,
         deleteSpotInitiate, 
         createSpot, 
         deleteSpot, 
         createSpotForm, 
         closeSpot,
         editSpot,
+        cancelEdit,
         submitEditSpot,
         setMap
     }, dispatch);
