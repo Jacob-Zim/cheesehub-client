@@ -86,7 +86,7 @@ export class SpotList extends React.Component {
                 list =  this.props.spotList.spots.map((spot) => 
                 <Marker 
                 position={{ lat: spot.lat, lng: spot.lng }}
-                 onMouseOver={ (e) => this.displaySpot(e, spot)}
+                 onClick={ (e) => this.displaySpot(e, spot)}
                  icon={{
                      url: "https://www.svgrepo.com/show/175190/skateboard.svg",
                      scaledSize: new google.maps.Size(50, 50)
