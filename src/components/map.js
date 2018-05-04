@@ -210,13 +210,13 @@ export class SpotList extends React.Component {
                         );
                     }}>
                         <button className="infoBoxCloseBtn" onClick={() => this.props.closeSpot()}>X</button>
-                        <input className="editField" id="spotName" type="text"></input>
+                        <input className="editField" id="spotName" type="text" defaultValue={this.props.spotList.hoverSpot.name}></input>
                         <label htmlFor="spotName">name</label>
-                        <input className="editField" id="spotDesc" type="text"></input>
+                        <input className="editField" id="spotDesc" type="text" defaultValue={this.props.spotList.hoverSpot.notes}></input>
                         <label htmlFor="spotDesc">notes</label>
-                        <input className="editField" id="spotRating" type="number"></input>
+                        <input className="editField" id="spotRating" type="number" defaultValue={this.props.spotList.hoverSpot.rating}></input>
                         <label htmlFor="spotRating">rating</label>
-                        <input className="editField" id="spotAddress" type="text"></input>
+                        <input className="editField" id="spotAddress" type="text" defaultValue={this.props.spotList.hoverSpot.address}></input>
                         <label htmlFor="spotAddress">address</label>
                         <input className="imgUrlInp editField" id="spotImage" type="text" defaultValue={this.props.spotList.hoverSpot.image}></input>
                         <label className="imgUrl" htmlFor="spotImage">image</label>
