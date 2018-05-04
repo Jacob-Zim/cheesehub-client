@@ -218,7 +218,7 @@ export class SpotList extends React.Component {
                         <label htmlFor="spotRating">rating</label>
                         <input className="editField" id="spotAddress" type="text"></input>
                         <label htmlFor="spotAddress">address</label>
-                        <input className="imgUrlInp editField" id="spotImage" type="text"></input>
+                        <input className="imgUrlInp editField" id="spotImage" type="text" defaultValue={this.props.spotList.hoverSpot.image}></input>
                         <label className="imgUrl" htmlFor="spotImage">image</label>
                         <section className="editSubmitBtns">
                             <button className="editBtnSubmit">SUBMIT</button>
