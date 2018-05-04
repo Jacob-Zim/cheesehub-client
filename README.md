@@ -9,11 +9,11 @@ https://infallible-goodall-e2cc46.netlify.com/
 
 Here are some examples of the app:
 
-![alt text](https://imgur.com/SYEsCaq)
+![capture1](https://user-images.githubusercontent.com/16858183/39651054-560ddec6-4f9f-11e8-92bf-7fb8f168e641.PNG)
 
-![Screenshot](https://imgur.com/PQDv1zp "Editing")
+![capture2](https://user-images.githubusercontent.com/16858183/39651062-5abc8b8e-4f9f-11e8-8771-f38537327c66.PNG)
 
-![Screenshot](https://imgur.com/AXgL2Bz "About")
+![capture3](https://user-images.githubusercontent.com/16858183/39651066-5e15068a-4f9f-11e8-9e49-18ac3ed2bb14.PNG)
 
 The application is using the MERN stack (mongodb, express, react, node.js),
 along with react-google-maps (https://github.com/tomchentw/react-google-maps),
