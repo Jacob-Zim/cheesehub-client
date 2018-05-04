@@ -15,7 +15,8 @@ import {
     EDIT_SPOT,
     EDIT_SPOT_SUCCESS,
     CANCEL_EDIT,
-    SET_MAP
+    SET_MAP,
+    GET_INFO
 } from '../actions/spot';
 
 const initialState = {
@@ -29,7 +30,8 @@ const initialState = {
   newSpot: false,
   hoverSpot: false,
   editing: false,
-  _map: false
+  _map: false,
+  info: false
 };
 
 export default function spotReducer(state = initialState, action) {
@@ -113,7 +115,7 @@ export default function spotReducer(state = initialState, action) {
         return Object.assign({}, state, {
             hoverSpot: action.hoverSpot,
             defaultCenter: { lat:action.hoverSpot.lat, lng:action.hoverSpot.lng},
-            defaultZoom: 11
+            defaultZoom: 15
         });
     }
     else if (action.type === CLOSE_SPOT) {
@@ -151,6 +153,11 @@ export default function spotReducer(state = initialState, action) {
         return Object.assign({}, state, {
             defaultCenter: action.latlng,
             defaultZoom: action.zoom
+        });
+    }
+    else if (action.type === GET_INFO) {
+        return Object.assign({}, state, {
+            info: !state.info
         });
     }
     return state;

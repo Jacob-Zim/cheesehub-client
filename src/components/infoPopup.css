@@ -1,0 +1,15 @@
+.infoPopupBox {
+    font-size: 20px;
+    position: absolute;
+    top: 40%;
+    z-index: 10;
+    margin-right: 33.3%;
+    margin-left: 33.3%;
+}
+
+.infoPopupClose {
+    width: 30px;
+    height: 30px;
+    top: 30px;
+    right: 40px;
+}

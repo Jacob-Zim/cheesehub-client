@@ -17,6 +17,11 @@ export const fetchOneSpotSuccess = (res) => ({
     hoverSpot: res
 });
 
+export const GET_INFO = 'GET_INFO';
+export const getInfo = () => ({
+    type: GET_INFO
+});
+
 export const CLOSE_SPOT = 'CLOSE_SPOT';
 export const closeSpot = () => ({
     type: CLOSE_SPOT

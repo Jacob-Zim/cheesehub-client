@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Header from './header';
+import InfoPopup from './infoPopup';
 
 import './map.css';
 
@@ -235,9 +236,16 @@ export class SpotList extends React.Component {
                 ));
         }
 
+        let info;
+
+        if (this.props.spotList.info) {
+            info = <InfoPopup />;
+        }
+
         return (
             <div className="map-container">
             <Header />
+            {info}
             <div className="map">
             <MyMap
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9t7sxzQrg5KAG4FG7CFbX-ghGbqtktH0&v=3.exp&libraries=geometry,drawing,places"

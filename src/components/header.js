@@ -6,6 +6,7 @@ import Login from './login';
 import Register from './register';
 
 import {clearAuth, register} from '../actions/auth';
+import {getInfo} from '../actions/spot';
 
 import './header.css';
 import './map.css';
@@ -15,7 +16,7 @@ export class Header extends React.Component {
        let logout;
        let registers;
        let username;
-       let login
+       let login;
        if (this.props.auth.currentUser) {
            logout = <button className="editBtn registerBtn" onClick={() => this.props.dispatch(clearAuth())}>logout</button>
            username = <p className="currentUser"></p>
@@ -35,6 +36,7 @@ export class Header extends React.Component {
             <h1>SkateSpot Finder</h1>
             <img className="skateboardImg" src="https://cdn.onlinewebfonts.com/svg/img_538005.png" />
             <div className="cite">Icon made from <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a> is licensed by CC BY 3.0</div>
+        <button className="help" onClick={() => this.props.dispatch(getInfo())}>?</button>
         {username}
         {login}
         {logout}
