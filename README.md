@@ -19,3 +19,5 @@ The application is using the MERN stack (mongodb, express, react, node.js),
 along with react-google-maps (https://github.com/tomchentw/react-google-maps),
 and redux for state management
 
+The main component is Map which generates and rerenders the google map based on state,
+the other critical component is the header which contains the login / logout / register operations
