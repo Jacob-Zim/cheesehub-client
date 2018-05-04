@@ -9,3 +9,13 @@ https://infallible-goodall-e2cc46.netlify.com/
 
 Here are some examples of the app:
 
+![Alt text](https://imgur.com/SYEsCaq "Initial Page")
+
+![Alt text](https://imgur.com/PQDv1zp "Editing")
+
+![Alt text](https://imgur.com/AXgL2Bz "About")
+
+The application is using the MERN stack (mongodb, express, react, node.js),
+along with react-google-maps (https://github.com/tomchentw/react-google-maps),
+and redux for state management
+
