@@ -9,7 +9,7 @@ https://infallible-goodall-e2cc46.netlify.com/
 
 Here are some examples of the app:
 
-![Screenshot](https://imgur.com/SYEsCaq "Initial Page")
+![Screenshot](C:\Users\Jacob\Desktop\appimages "Initial Page")
 
 ![Screenshot](https://imgur.com/PQDv1zp "Editing")
 
