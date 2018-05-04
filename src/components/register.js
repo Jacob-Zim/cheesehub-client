@@ -4,24 +4,28 @@ import {connect} from 'react-redux';
 
 import {registerUser, register} from '../actions/auth';
 
+import './login.css';
+
 export class Register extends React.Component {
 
     render() {
 
         return (
-            <form onSubmit={e => {
+            <form
+            className="login-form" 
+            onSubmit={e => {
                 e.preventDefault()
                 const username = e.target.username.value;
                 const password = e.target.password.value;
                 this.props.dispatch(registerUser(username, password));
                 this.props.dispatch(register());
             }}>
-                <label htmlFor="username">username</label>
-                <input name="username" type="text"></input>
-                <label htmlFor="password">password</label>
-                <input name="password" type="password"></input>
-                <button>submit</button>
-                <button onClick={() => this.props.dispatch(register())}>cancel</button>
+                <label className="userInput" htmlFor="username">Username</label>
+                <input className="editField" name="username" type="text"></input>
+                <label className="passInput" htmlFor="password">Password</label>
+                <input className="editField" name="password" type="password"></input>
+                <button className="editBtnSubmit loginBtn" >submit</button>
+                <button className="deleteBtn" onClick={() => this.props.dispatch(register())}>cancel</button>
             </form>
         )
     }

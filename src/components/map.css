@@ -73,6 +73,16 @@
     background-color: rgba(13, 245, 44, 0.76);
 }
 
+.editField {
+    border: black 1px solid;
+    border-radius: .5em;
+    background-color: none;
+}
+
+.createSpotForm {
+    width: 210px;
+}
+
 .cancelEditBtn {
     width: 70px;
     margin-left: 5px;

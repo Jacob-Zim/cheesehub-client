@@ -106,7 +106,7 @@ export class SpotList extends React.Component {
                 ));
         let form;
         if (this.props.spotList.newSpot) {
-            form = <div className="spotForm">
+            form = <div>
                 <form onSubmit={(e) => {
                     e.preventDefault()
                     this.props.createSpot(
@@ -122,19 +122,23 @@ export class SpotList extends React.Component {
                         )
                 }
             }
-                style={ {position: 'fixed', top: this.props.spotList.newSpot.y, left: this.props.spotList.newSpot.x} }>
-                    <input id="spotName" type="text"></input>
+                style={ {position: 'fixed', top: this.props.spotList.newSpot.y, left: this.props.spotList.newSpot.x} }
+                className="infoBoxBkg createSpotForm"
+                >
+                    <button className="infoBoxCloseBtn" onClick={() => this.props.createSpotCancel()}>X</button>
+                    <input className="editField" id="spotName" type="text"></input>
                     <label htmlFor="spotName">name</label>
-                    <input id="spotDesc" type="text"></input>
+                    <input className="editField" id="spotDesc" type="text"></input>
                     <label htmlFor="spotDesc">notes</label>
-                    <input id="spotRating" type="number"></input>
+                    <input className="editField" id="spotRating" type="number" max="5"></input>
                     <label htmlFor="spotRating">rating</label>
-                    <input id="spotAddress" type="text"></input>
+                    <input className="editField" id="spotAddress" type="text"></input>
                     <label htmlFor="spotAddress">Address</label>
-                    <input id="spotImage" type="text"></input>
+                    <input className="editField" id="spotImage" type="text"></input>
                     <label htmlFor="spotImage">Image Url</label>
-                    <button>Submit</button>
-                    <button onClick={() => this.props.createSpotCancel()}>Close</button>
+                    <section className="editSubmitBtns">
+                        <button className="editBtnSubmit">Submit</button>
+                    </section>
                 </form>
             </div>
         }
@@ -167,7 +171,7 @@ export class SpotList extends React.Component {
                         <img className="ratingStar" src="http://www.clker.com/cliparts/6/b/a/9/13501528831665215180star.svg" />
                         </div>
                         <p className="spotAddress">{this.props.spotList.hoverSpot.address}</p>
-                        <img className="skateSpotImg" src={this.props.spotList.hoverSpot.image} alt=""/>
+                        <img className="skateSpotImg" src={this.props.spotList.hoverSpot.image} alt="Spot image here"/>
                         <p className="spotNotes">{this.props.spotList.hoverSpot.notes}</p>
                         {buttons}
                     </section>
@@ -205,15 +209,15 @@ export class SpotList extends React.Component {
                         );
                     }}>
                         <button className="infoBoxCloseBtn" onClick={() => this.props.closeSpot()}>X</button>
-                        <input id="spotName" type="text"></input>
+                        <input className="editField" id="spotName" type="text"></input>
                         <label htmlFor="spotName">name</label>
-                        <input id="spotDesc" type="text"></input>
+                        <input className="editField" id="spotDesc" type="text"></input>
                         <label htmlFor="spotDesc">notes</label>
-                        <input id="spotRating" type="number"></input>
+                        <input className="editField" id="spotRating" type="number"></input>
                         <label htmlFor="spotRating">rating</label>
-                        <input id="spotAddress" type="text"></input>
+                        <input className="editField" id="spotAddress" type="text"></input>
                         <label htmlFor="spotAddress">address</label>
-                        <input className="imgUrlInp" id="spotImage" type="text"></input>
+                        <input className="imgUrlInp editField" id="spotImage" type="text"></input>
                         <label className="imgUrl" htmlFor="spotImage">image</label>
                         <section className="editSubmitBtns">
                             <button className="editBtnSubmit">SUBMIT</button>
