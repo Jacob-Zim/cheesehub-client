@@ -11,9 +11,13 @@
     border: black 1px solid;
     border-radius: 1.5em;
     opacity: 0.9;
-    padding: 100px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding: 17px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.editSpotBox {
+    padding-right: 170px;
 }
 
 .editDeleteBtns {
@@ -69,6 +73,14 @@
     background-color: none;
 }
 
+.submitSpot {
+    position: relative;
+    width: 100px;
+    left: 35%;
+    height: 30px;
+    margin-top: 5px;
+}
+
 .editBtnSubmit:hover {
     background-color: rgba(13, 245, 44, 0.76);
 }
@@ -80,10 +92,6 @@
     padding-left: 5px;
     height: 25px;
     font-size: 16px;
-}
-
-.spotFormWidth {
-    width: 150px;
 }
 
 .createSpotForm {
@@ -123,6 +131,14 @@
     height: 18px;
 }
 
+.labelFont {
+    font-size: 19px;
+}
+
+.editFormSpotField {
+    display: block;
+}
+
 .spotAddress {
     margin: 0;
     text-align: center;
@@ -154,6 +170,10 @@
     background-color: rgba(129, 31, 31, 0.678);
 }
 
+.editSpotField {
+    width: 325px;
+}
+
 .infoBoxCloseBtn {
     display: block;
     position: absolute;
@@ -166,4 +186,44 @@
     padding-bottom: 0;
     font-weight: 700;
     border-radius: 1.5em;
+}
+
+@media only screen and (max-width: 1100px)  {
+    .banner {
+        height: 40%;
+    }
+
+    .loginBtn {
+        position: relative;
+        display: inline;
+        margin-top: 10px;
+    }
+
+    .login-form > label, button{
+        position: relative;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .editSpotBox {
+        padding-right: 80px;
+    }
+
+    .createSpotForm {
+        position: fixed;
+        left: auto;
+        right: auto;
+        width: 50%;
+        padding-right: 100px;
+    }
+
+    .submitSpot {
+        left: 0;
+    }
+
+    .editField {
+        width: 90%;
+    }
+
 }

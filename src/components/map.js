@@ -83,8 +83,9 @@ export class SpotList extends React.Component {
         let list
         if (this.props.spotList) {
             if (this.props.spotList.spots) {
-                list =  this.props.spotList.spots.map((spot) => 
+                list =  this.props.spotList.spots.map((spot, key) => 
                 <Marker 
+                key={key}
                 position={{ lat: spot.lat, lng: spot.lng }}
                  onClick={ (e) => this.displaySpot(e, spot)}
                  icon={{
@@ -123,22 +124,22 @@ export class SpotList extends React.Component {
                         )
                 }
             }
-                style={ {position: 'fixed', top: this.props.spotList.newSpot.y, left: this.props.spotList.newSpot.x} }
-                className="infoBoxBkg createSpotForm"
+                style={ {position: 'fixed', top: `20%`, left: `20%`, zIndex: 100} }
+                className="infoBoxBkg createSpotForm editSpotBox"
                 >
                     <button className="infoBoxCloseBtn" onClick={() => this.props.createSpotCancel()}>X</button>
-                    <input className="editField" id="spotName" type="text"></input>
                     <label htmlFor="spotName">name</label>
-                    <input className="editField" id="spotDesc" type="text"></input>
+                    <input className="editSpotField editField" id="spotName" type="text"></input>
                     <label htmlFor="spotDesc">notes</label>
-                    <input className="editField" id="spotRating" type="number" max="5"></input>
+                    <input className="editSpotField editField" id="spotDesc" type="text"></input>
                     <label htmlFor="spotRating">rating</label>
-                    <input className="editField" id="spotAddress" type="text"></input>
+                    <input className="editSpotField editField" id="spotRating" type="number" max="5"></input>
                     <label htmlFor="spotAddress">Address</label>
-                    <input className="editField" id="spotImage" type="text"></input>
+                    <input className="editSpotField editField" id="spotAddress" type="text"></input>
                     <label htmlFor="spotImage">Image Url</label>
+                    <input className="editSpotField editField" id="spotImage" type="text"></input>
                     <section className="editSubmitBtns">
-                        <button className="editBtnSubmit">Submit</button>
+                        <button className="submitSpot editBtnSubmit">Submit</button>
                     </section>
                 </form>
             </div>
@@ -169,10 +170,10 @@ export class SpotList extends React.Component {
                         <p className="spotName">{this.props.spotList.hoverSpot.name}</p>
                         <div className="ratingGroup">
                         <p className="spotRating">{this.props.spotList.hoverSpot.rating}</p>
-                        <img className="ratingStar" src="http://www.clker.com/cliparts/6/b/a/9/13501528831665215180star.svg" />
+                        <img className="ratingStar" src="http://www.clker.com/cliparts/6/b/a/9/13501528831665215180star.svg" alt="Star Rating"/>
                         </div>
                         <p className="spotAddress">{this.props.spotList.hoverSpot.address}</p>
-                        <img className="skateSpotImg" src={this.props.spotList.hoverSpot.image} alt="Spot image here"/>
+                        <img className="skateSpotImg" src={this.props.spotList.hoverSpot.image} alt="Spot here"/>
                         <p className="spotNotes">{this.props.spotList.hoverSpot.notes}</p>
                         {buttons}
                     </section>
@@ -194,7 +195,7 @@ export class SpotList extends React.Component {
             options={{ closeBoxURL: ``, enableEventPropagation: true }}
             >
                 <div className="infoBoxBkg" style={{ paddingLeft: `15px`, paddingRight: `20px` }}>
-                    <section className="infoBoxCont" style={{ fontSize: `16px`, fontColor: `black` }}>
+                    <section className="infoBoxCont">
                     <form onSubmit={(e) => {
                         e.preventDefault();
                         this.props.submitEditSpot(
@@ -208,18 +209,19 @@ export class SpotList extends React.Component {
                         this.props.auth.authToken,
                         this.props.auth.currentUser
                         );
+                        className="createSpotForm editSpotBox"
                     }}>
                         <button className="infoBoxCloseBtn" onClick={() => this.props.closeSpot()}>X</button>
-                        <input className="editField" id="spotName" type="text" defaultValue={this.props.spotList.hoverSpot.name}></input>
-                        <label htmlFor="spotName">name</label>
-                        <input className="editField" id="spotDesc" type="text" defaultValue={this.props.spotList.hoverSpot.notes}></input>
-                        <label htmlFor="spotDesc">notes</label>
-                        <input className="editField" id="spotRating" type="number" defaultValue={this.props.spotList.hoverSpot.rating}></input>
-                        <label htmlFor="spotRating">rating</label>
-                        <input className="editField" id="spotAddress" type="text" defaultValue={this.props.spotList.hoverSpot.address}></input>
-                        <label htmlFor="spotAddress">address</label>
-                        <input className="imgUrlInp editField" id="spotImage" type="text" defaultValue={this.props.spotList.hoverSpot.image}></input>
-                        <label className="imgUrl" htmlFor="spotImage">image</label>
+                        <label className="labelFont" htmlFor="spotName">name</label>
+                        <input className="editFormSpotField editSpotField editField" id="spotName" type="text" defaultValue={this.props.spotList.hoverSpot.name}></input>
+                        <label className="labelFont" htmlFor="spotDesc">notes</label>
+                        <input className="editFormSpotField editSpotField editField" id="spotDesc" type="text" defaultValue={this.props.spotList.hoverSpot.notes}></input>
+                        <label className="labelFont" htmlFor="spotRating">rating</label>
+                        <input className="editFormSpotField editSpotField editField" id="spotRating" type="number" defaultValue={this.props.spotList.hoverSpot.rating}></input>
+                        <label className="labelFont" htmlFor="spotAddress">address</label>
+                        <input className="editFormSpotField editSpotField editField" id="spotAddress" type="text" defaultValue={this.props.spotList.hoverSpot.address}></input>
+                        <label className="labelFont imgUrl" htmlFor="spotImage">image</label>
+                        <input className="editFormSpotField editSpotField imgUrlInp editField" id="spotImage" type="text" defaultValue={this.props.spotList.hoverSpot.image}></input>
                         <section className="editSubmitBtns">
                             <button className="editBtnSubmit">SUBMIT</button>
                             <button className="cancelEditBtn" onClick={() => this.props.cancelEdit()}>CANCEL</button>

@@ -1,4 +1,3 @@
-'use strict';
 
 import {
     FETCH_SPOT_REQUEST,

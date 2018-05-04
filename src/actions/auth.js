@@ -1,5 +1,4 @@
 import jwtDecode from 'jwt-decode';
-import {SubmissionError} from 'redux-form';
 
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
@@ -59,9 +58,7 @@ export const registerUser = (username, password) => dispatch => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .catch(err => {
-            const {reason, message, location} = err;
-            if (reason === 'ValidationError') {
-            }
+
         });
 };
 
@@ -85,11 +82,6 @@ export const login = (username, password) => dispatch => {
             .then(res => res.json())
             .then(({authToken}) => storeAuthInfo(authToken, dispatch))
             .catch(err => {
-                const {code} = err;
-                const message =
-                    code === 401
-                        ? 'Incorrect username or password'
-                        : 'Unable to login, please try again';
                 dispatch(authError(err));
             })
     );
