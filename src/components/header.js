@@ -17,10 +17,13 @@ export class Header extends React.Component {
        let registers;
        let username;
        let login;
+       let bannerStyle = "";
        if (this.props.auth.currentUser) {
            logout = <button className="editBtn registerBtn" onClick={() => this.props.dispatch(clearAuth())}>logout</button>
            username = <p className="currentUser"></p>
-
+           if (screen.height < 800) {
+               bannerStyle = "height: 200px";
+           }
         }
        if (!this.props.auth.currentUser) {
            registers = <button className="editBtn registerBtn" onClick={() => this.props.dispatch(register())}>Register</button>
@@ -32,7 +35,7 @@ export class Header extends React.Component {
         login = <Login />
        }
     return (
-        <div className="banner">
+        <div className="banner" style={bannerStyle}>
             <h1>SkateSpot Finder</h1>
             <img className="skateboardImg" src="https://cdn.onlinewebfonts.com/svg/img_538005.png" alt="Skateboard" />
             <div className="cite">Icon made from <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a> is licensed by CC BY 3.0</div>
