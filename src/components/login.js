@@ -6,9 +6,6 @@ import './map.css';
 import './login.css'
 
 export class LoginForm extends React.Component {
-    onSubmit(values) {
-        this.props.dispatch(login(values.username, values.password));
-    }
 
     render() {
         return (
@@ -16,7 +13,8 @@ export class LoginForm extends React.Component {
                 className="login-form"
                 onSubmit={e => {
                     e.preventDefault();
-                    this.onSubmit({username: e.target.username.value, password: e.target.password.value})}
+                    this.props.dispatch(login(e.target.username.value, e.target.password.value));
+                }
                 }>
                 <label htmlFor="username" className="userInput">Username</label>
                     <input className="editField" name="username" type="text"></input>
