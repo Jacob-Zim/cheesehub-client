@@ -15,7 +15,7 @@ export class LoginForm extends React.Component {
             <form
                 className="login-form"
                 onSubmit={e => {e.preventDefault();
-                    console.log(e.target.password);
+                    console.log(e.target.password.value);
                     this.onSubmit({username: e.target.username.value, password: e.target.password.value})}
                 }>
                 <label htmlFor="username" className="userInput">Username</label>
