@@ -62,29 +62,59 @@ export const registerUser = (username, password) => dispatch => {
         });
 };
 
+// export const login = (username, password) => dispatch => {
+//     dispatch(authRequest());
+//     var data = new URLSearchParams();
+//     data.append('username', username);
+//     data.append('password', password);
+//     return (
+//         fetch(`${API_BASE_URL}/login`, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: data
+//         })
+//             // Reject any requests which don't return a 200 status, creating
+//             // errors which follow a consistent format
+//             .then(res => normalizeResponseErrors(res))
+//             .then(res => res.json())
+//             .then(({authToken}) => storeAuthInfo(authToken, dispatch))
+//             .catch(err => {
+//                 dispatch(authError(err));
+//             })
+//     );
+// };
 
-export const login = (username, password) => dispatch => {
-    dispatch(authRequest());
-    var data = new URLSearchParams();
-    data.append('username', username);
-    data.append('password', password);
-    return (
-        fetch(`${API_BASE_URL}/login`, {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var login = exports.login = function login(username, password) {
+    return function (dispatch) {
+        dispatch(authRequest());
+        var data = new URLSearchParams();
+        data.append('username', username);
+        data.append('password', password);
+        return fetch(API_BASE_URL + '/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: data
         })
-            // Reject any requests which don't return a 200 status, creating
-            // errors which follow a consistent format
-            .then(res => normalizeResponseErrors(res))
-            .then(res => res.json())
-            .then(({authToken}) => storeAuthInfo(authToken, dispatch))
-            .catch(err => {
-                dispatch(authError(err));
-            })
-    );
+        // Reject any requests which don't return a 200 status, creating
+        // errors which follow a consistent format
+        .then(function (res) {
+            return normalizeResponseErrors(res);
+        }).then(function (res) {
+            return res.json();
+        }).then(function (_ref) {
+            var authToken = _ref.authToken;
+            return storeAuthInfo(authToken, dispatch);
+        }).catch(function (err) {
+            dispatch(authError(err));
+        });
+    };
 };
 
 export const refreshAuthToken = () => (dispatch, getState) => {
