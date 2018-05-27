@@ -139,3 +139,5 @@ export const refreshAuthToken = () => (dispatch, getState) => {
             clearAuthToken(authToken);
         });
 };
+
+module.exports = login;
