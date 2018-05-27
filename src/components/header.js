@@ -33,7 +33,7 @@ export class Header extends React.Component {
     return (
         <div className="banner">
             <h1 style={{display: this.props.auth.currentUser ? 'none' : 'block' }}>SkateSpot Finder</h1>
-            <img style={{display: this.props.auth.currentUser ? 'none' : 'block' }} className="skateboardImg" src="https://cdn.onlinewebfonts.com/svg/img_538005.png" alt="Skateboard" />
+            <img style={{display: this.props.auth.currentUser ? 'none' : 'inline-block' }} className="skateboardImg" src="https://cdn.onlinewebfonts.com/svg/img_538005.png" alt="Skateboard" />
         <button className="help" onClick={() => this.props.dispatch(getInfo())}>?</button>
         {username}
         {login}
