@@ -1,10 +1,9 @@
 import React from 'react';
+import {login} from '../actions/auth';
 import {connect} from 'react-redux';
 
 import './map.css';
 import './login.css'
-
-const {login} = require('../actions/auth');
 
 export class LoginForm extends React.Component {
 
