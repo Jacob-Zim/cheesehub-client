@@ -225,11 +225,8 @@
 
     .editBtn {
         margin:0 auto;
+        margin-bottom: 5px;
         display: block;
-    }
-
-    .infoBoxBkg {
-        width: 35%;
     }
 
     .deleteBtn {
