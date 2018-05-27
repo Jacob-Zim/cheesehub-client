@@ -71,7 +71,7 @@ export const login = (username, password) => dispatch => {
         fetch(`${API_BASE_URL}/login`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: data
         })
