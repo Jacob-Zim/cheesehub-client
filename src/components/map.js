@@ -124,8 +124,8 @@ export class SpotList extends React.Component {
                         )
                 }
             }
-                style={ {position: 'fixed', top: `20%`, left: `20%`, zIndex: 100} }
-                className="infoBoxBkg createSpotForm editSpotBox"
+                style={ {position: 'fixed', top: `20%`, left: `10%`, zIndex: 100} }
+                className="infoBoxBkg createSpotForm createSpotBox"
                 >
                     <button className="infoBoxCloseBtn" onClick={() => this.props.createSpotCancel()}>X</button>
                     <label htmlFor="spotName">name</label>
