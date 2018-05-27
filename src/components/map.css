@@ -212,13 +212,9 @@
         padding-right: 80px;
     }
 
-    /* .createSpotForm {
-        position: fixed;
-        left: auto;
-        right: auto;
-        width: 50%;
+     .createSpotForm {
         padding-right: 100px;
-    } */
+    }
 
     .submitSpot {
         left: 0;
