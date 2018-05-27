@@ -65,10 +65,9 @@ export const registerUser = (username, password) => dispatch => {
 
 export const login = (username, password) => dispatch => {
     dispatch(authRequest());
-    // var data = new URLSearchParams();
-    // data.append('username', username);
-    // data.append('password', password);
-    var data = {username, password};
+    var data = new URLSearchParams();
+    data.append('username', username);
+    data.append('password', password);
     return (
         fetch(`${API_BASE_URL}/login`, {
             method: 'POST',
