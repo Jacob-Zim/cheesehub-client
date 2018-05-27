@@ -229,6 +229,14 @@
         display: block;
     }
 
+    .cancelEditBtn {
+        margin-top: 5px;
+    }
+
+    .spotBox {
+        width: 353px;
+    }
+
     .deleteBtn {
         margin:0 auto;
         display: block;

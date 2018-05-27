@@ -164,7 +164,7 @@ export class SpotList extends React.Component {
             defaultPosition= {new google.maps.LatLng(this.props.spotList.hoverSpot.lat, this.props.spotList.hoverSpot.lng)}
             options={{ closeBoxURL: ``, enableEventPropagation: true }}
             >
-                <div className="infoBoxBkg">
+                <div className="infoBoxBkg spotBox">
                     <section className="infoBoxCont" style={{ fontSize: `16px`, fontColor: `black` }}>
                         <button className="infoBoxCloseBtn" onClick={() => this.props.closeSpot()}>X</button>
                         <p className="spotName">{this.props.spotList.hoverSpot.name}</p>
@@ -194,7 +194,7 @@ export class SpotList extends React.Component {
             defaultPosition= {new google.maps.LatLng(this.props.spotList.hoverSpot.lat, this.props.spotList.hoverSpot.lng)}
             options={{ closeBoxURL: ``, enableEventPropagation: true }}
             >
-                <div className="infoBoxBkg" style={{ paddingLeft: `15px`, paddingRight: `20px` }}>
+                <div className="infoBoxBkg spotBox" style={{ paddingLeft: `15px`, paddingRight: `20px` }}>
                     <section className="infoBoxCont">
                     <form onSubmit={(e) => {
                         e.preventDefault();
