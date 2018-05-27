@@ -17,9 +17,9 @@ export class LoginForm extends React.Component {
                 }
                 }>
                 <label htmlFor="username" className="userInput">Username</label>
-                    <input className="editField" name="username" type="text"></input>
+                    <input className="editField userField" name="username" type="text"></input>
                 <label htmlFor="password" className="passInput">Password</label>
-                    <input className="editField" name="password" type="password"></input>
+                    <input className="editField passField" name="password" type="password"></input>
                 <button className="editBtnSubmit loginBtn">
                     Log in
                 </button>

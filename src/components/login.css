@@ -20,3 +20,11 @@
 .login-form {
     margin-bottom: 20px;
 }
+
+.userField {
+    text-align: center;
+}
+
+.passField {
+    text-align: center;
+}

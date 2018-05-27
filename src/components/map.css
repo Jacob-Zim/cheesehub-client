@@ -223,6 +223,20 @@
         width: 90%;
     }
 
+    .editBtn {
+        margin:0 auto;
+        display: block;
+    }
+
+    .infoBoxBkg {
+        width: 35%;
+    }
+
+    .deleteBtn {
+        margin:0 auto;
+        display: block;
+    }
+
     .infoPopupBox {
         display: block;
         margin-left: auto;
