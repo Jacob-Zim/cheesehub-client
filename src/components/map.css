@@ -249,4 +249,13 @@
         width: 50%;
     }
 
+    .editBtnSubmit {
+        margin:5px auto;
+        display: block;
+    }
+
+    .cancelEditBtn {
+        margin:0 auto;
+        display: block;
+    }
 }

@@ -164,7 +164,7 @@ export class SpotList extends React.Component {
             defaultPosition= {new google.maps.LatLng(this.props.spotList.hoverSpot.lat, this.props.spotList.hoverSpot.lng)}
             options={{ closeBoxURL: ``, enableEventPropagation: true }}
             >
-                <div className="infoBoxBkg spotBox">
+                <div className="infoBoxBkg">
                     <section className="infoBoxCont" style={{ fontSize: `16px`, fontColor: `black` }}>
                         <button className="infoBoxCloseBtn" onClick={() => this.props.closeSpot()}>X</button>
                         <p className="spotName">{this.props.spotList.hoverSpot.name}</p>
