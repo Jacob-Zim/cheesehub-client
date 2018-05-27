@@ -98,7 +98,7 @@ var login = exports.login = function login(username, password) {
         return fetch(API_BASE_URL + '/login', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: data
         })
