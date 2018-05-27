@@ -40,7 +40,7 @@ export class SpotList extends React.Component {
     componentDidMount() {
         setTimeout(()=>{
             this.props.fetchSpots();
-          },750);
+          },1000);
     }
 
     getClickedPosition(event) {

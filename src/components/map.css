@@ -189,9 +189,6 @@
 }
 
 @media only screen and (max-width: 1100px)  {
-    .banner {
-        height: 40%;
-    }
 
     .loginBtn {
         position: relative;
@@ -224,6 +221,13 @@
 
     .editField {
         width: 90%;
+    }
+
+    .infoPopupBox {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
     }
 
 }
