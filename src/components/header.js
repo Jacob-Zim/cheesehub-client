@@ -33,6 +33,9 @@ export class Header extends React.Component {
        }
        if (this.props.auth.error) {
            error = this.props.auth.error;
+           if (this.props.auth.register) {
+               error = null;
+           }
        }
     return (
         <div className="banner" style={{height: this.props.auth.currentUser ? '75px' : '' }}>

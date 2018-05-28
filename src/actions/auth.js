@@ -58,7 +58,7 @@ export const registerUser = (username, password) => dispatch => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .catch(err => {
-
+            dispatch(authError(err.message));
         });
 };
 
