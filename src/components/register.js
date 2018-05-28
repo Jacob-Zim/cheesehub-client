@@ -9,12 +9,6 @@ import './login.css';
 export class Register extends React.Component {
 
     render() {
-
-        let err;
-
-        if (this.props.auth.error) {
-            err = this.props.auth.error;
-        }
         return (
             <form
             className="login-form" 
@@ -25,7 +19,6 @@ export class Register extends React.Component {
                 this.props.dispatch(registerUser(username, password));
                 this.props.dispatch(register());
             }}>
-                <p>{err}</p>
                 <label className="userInput" htmlFor="username">Username</label>
                 <input className="editField" name="username" type="text"></input>
                 <label className="passInput" htmlFor="password">Password</label>
