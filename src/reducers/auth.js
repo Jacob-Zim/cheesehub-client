@@ -37,6 +37,7 @@ export default function authReducer(state = initialState, action) {
         });
     } else if (action.type === AUTH_SUCCESS) {
         return Object.assign({}, state, {
+            error: null,
             loading: false,
             currentUser: action.currentUser
         });
