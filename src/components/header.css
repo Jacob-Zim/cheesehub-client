@@ -78,4 +78,10 @@ h1 {
             left: 5px;
             top: -15px;
         }
+
+        .regSubmit {
+            display: block;
+            margin: 0 auto;
+            margin-top: 5px;
+        }
     }
