@@ -62,6 +62,10 @@ h1 {
     display: inline-block;
 }
 
+.errorMsg {
+    color: red;
+}
+
 @media only screen and (max-width: 800px)  {
         .help {
             display:none;

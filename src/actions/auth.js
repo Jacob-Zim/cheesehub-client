@@ -45,6 +45,7 @@ const storeAuthInfo = (authToken, dispatch) => {
 };
 
 export const registerUser = (username, password) => dispatch => {
+    dispatch(authRequest());
     var data = new URLSearchParams();
     data.append('username', username);
     data.append('password', password);

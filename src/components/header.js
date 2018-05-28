@@ -33,9 +33,6 @@ export class Header extends React.Component {
        }
        if (this.props.auth.error) {
            error = this.props.auth.error;
-           if (this.props.auth.register) {
-               error = null;
-           }
        }
     return (
         <div className="banner" style={{height: this.props.auth.currentUser ? '75px' : '' }}>
@@ -43,7 +40,7 @@ export class Header extends React.Component {
             <img style={{display: this.props.auth.currentUser ? 'none' : 'inline-block' }} className="skateboardImg" src="https://cdn.onlinewebfonts.com/svg/img_538005.png" alt="Skateboard" />
         <button style={{top: this.props.auth.currentUser ? '15px' : '' }} className="help" onClick={() => this.props.dispatch(getInfo())}>?</button>
         {username}
-        <p>{error}</p>
+        <p className="errorMsg">{error}</p>
         {login}
         {logout}
         {registers}
