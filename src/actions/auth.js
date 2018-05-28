@@ -82,7 +82,7 @@ export const login = (username, password) => dispatch => {
             .then(({authToken}) => storeAuthInfo(authToken, dispatch))
             .catch(err => {
                 console.log(err);
-                dispatch(authError(err));
+                dispatch(authError(err.message));
             })
     );
 };
