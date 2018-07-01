@@ -89,7 +89,7 @@ export class SpotList extends React.Component {
                 position={{ lat: spot.lat, lng: spot.lng }}
                  onClick={ (e) => this.displaySpot(e, spot)}
                  icon={{
-                     src: "../images/skateboard.svg",
+                     url: "../images/skateboard.svg",
                      scaledSize: new google.maps.Size(50, 50)
                  }}>
                  </Marker>);
