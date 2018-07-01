@@ -6,7 +6,7 @@
 }
 
 .infoBoxBkg {
-    background: url("https://www.asus.com/ae-en/Commercial-Laptops/ASUS_Chromebook_C200/websites/global/products/xOp8ZzclO1bZH0Ra/img/home//bg00.png");
+    background: rgb(158, 158, 158);
     background-size: cover;
     border: black 1px solid;
     border-radius: 1.5em;

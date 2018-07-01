@@ -146,6 +146,11 @@ export const createSpot = (lat, lng, name, notes, rating, address, image, authTo
 }
 
 export const fetchSpot = (lat, lng) => dispatch => {
+    Number.prototype.toFixedDown = function(digits) {
+        var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),
+            m = this.toString().match(re);
+        return m ? parseFloat(m[1]) : this.valueOf();
+    };
     let id;
     fetch(`${API_BASE_URL}/spots`, {
         method: 'GET',
@@ -155,7 +160,7 @@ export const fetchSpot = (lat, lng) => dispatch => {
     })
     .then(res => res.json())
     .then(spots => {
-        id = spots.filter(spot => spot.lat === lat && spot.lng === lng)[0].id;
+        id = spots.filter(spot => spot.lat.toFixedDown(3) === lat.toFixedDown(3) && spot.lng.toFixedDown(3) === lng.toFixedDown(3))[0].id;
         return (fetch(`${API_BASE_URL}/spots/${id}`, {
             method: 'GET',
             headers: {

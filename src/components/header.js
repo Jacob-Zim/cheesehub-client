@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import Login from './login';
 import Register from './register';
 
+import {login as demologin} from '../actions/auth';
+
 import {clearAuth, register} from '../actions/auth';
 import {getInfo} from '../actions/spot';
 
@@ -18,6 +20,7 @@ export class Header extends React.Component {
        let username;
        let login;
        let error;
+       let demo;
        if (this.props.auth.currentUser) {
            logout = <button className="editBtn registerBtn" onClick={() => this.props.dispatch(clearAuth())}>logout</button>
            username = <p className="currentUser"></p>
@@ -29,7 +32,8 @@ export class Header extends React.Component {
            registers = <Register />
        }
        if (!this.props.auth.register && !this.props.auth.currentUser) {
-           login = <Login />
+           demo = <button className="demoBtn" onClick={(e) => {e.preventDefault(); this.props.dispatch(demologin("demoUser", "demodemo"));}} >Demo</button>
+           login = <div><Login />{demo}</div>
        }
        if (this.props.auth.error) {
            error = this.props.auth.error;

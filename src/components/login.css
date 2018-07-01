@@ -22,8 +22,25 @@
     background-color: none;
 }
 
+.loginBtn:hover {
+    background-color: rgb(16, 179, 16);
+}
+
+.demoBtn {
+  display: inline-block;
+  width: 70px;
+  border: black 1px solid;
+  border-radius: 2em;
+  background-color: none;
+}
+
+.demoBtn:hover {
+    background-color: rgb(16, 179, 16);
+}
+
 .login-form {
     margin-bottom: 20px;
+    display: inline-block;
 }
 
 .userField {
