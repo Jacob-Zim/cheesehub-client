@@ -22,7 +22,7 @@ export class Header extends React.Component {
        let error;
        let demo;
        if (this.props.auth.currentUser) {
-           logout = <button className="editBtn registerBtn" onClick={() => this.props.dispatch(clearAuth())}>logout</button>
+           logout = <button className="editBtn logoutBtn" onClick={() => this.props.dispatch(clearAuth())}>logout</button>
            username = <p className="currentUser"></p>
         }
        if (!this.props.auth.currentUser) {

@@ -32,6 +32,10 @@
     margin-bottom: 5px;
 }
 
+.logoutBtn {
+    width: 100px;
+}
+
 h1 {
     color:gold;
 }
