@@ -46,15 +46,12 @@ const storeAuthInfo = (authToken, dispatch) => {
 
 export const registerUser = (username, password) => dispatch => {
     dispatch(authRequest());
-    var data = new URLSearchParams();
-    data.append('username', username);
-    data.append('password', password);
     return fetch(`${API_BASE_URL}/users`, {
         method: 'POST',
         headers: {
-            'content-type': 'application/x-www-form-urlencoded'
+            'content-type': 'application/json'
         },
-        body: data
+        body: JSON.stringify({username, password})
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
@@ -65,16 +62,13 @@ export const registerUser = (username, password) => dispatch => {
 
 export const login = (username, password) => dispatch => {
     dispatch(authRequest());
-    var data = new URLSearchParams();
-    data.append('username', username);
-    data.append('password', password);
     return (
         fetch(`${API_BASE_URL}/login`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/json'
             },
-            body: data
+            body: JSON.stringify({username, password})
         })
             // Reject any requests which don't return a 200 status, creating
             // errors which follow a consistent format

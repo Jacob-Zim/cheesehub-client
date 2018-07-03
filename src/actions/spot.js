@@ -119,23 +119,14 @@ export const fetchSpots = () => dispatch => {
 
 export const createSpot = (lat, lng, name, notes, rating, address, image, authToken, userId) => (dispatch) => {
 
-    const data = new URLSearchParams();
-    data.append('lat', lat);
-    data.append('lng', lng);
-    data.append('name', name);
-    data.append('notes', notes);
-    data.append('rating', rating);
-    data.append('userId', userId);
-    data.append('image', image);
-    data.append('address', address)
     return (
         fetch(`${API_BASE_URL}/spots`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${authToken}`,
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/json'
             },
-            body: data
+            body: JSON.stringify({lat, lng, name, notes, rating, userId, image, address})
         })
         .then(res => res.json())
         .then(spot => {dispatch(createSpotSuccess(spot.lat, spot.lng, spot.name, spot.notes, spot.rating, spot.address, spot.image, userId))})
@@ -174,8 +165,7 @@ export const fetchSpot = (lat, lng) => dispatch => {
 }
 
 export const deleteSpot = (lat, lng, authToken, userId) => dispatch => {
-    const data = new URLSearchParams();
-    data.append('userId', userId);
+
     let id;
     fetch(`${API_BASE_URL}/spots`, {
         method: 'GET',
@@ -190,27 +180,17 @@ export const deleteSpot = (lat, lng, authToken, userId) => dispatch => {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${authToken}`,
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/json'
             },
-            body: data
+            body: JSON.stringify({userId})
         })
         )
     })
-    .then(res => res.json())
     .then(res => {dispatch(deleteSpotSuccess(lat, lng, userId))});
 }
 
 export const submitEditSpot = (lat, lng, name, notes, rating, address, image, authToken, userId) => dispatch => {
     let id;
-    var data = new URLSearchParams();
-    data.append('lat', lat);
-    data.append('lng', lng);
-    data.append('name', name);
-    data.append('notes', notes);
-    data.append('rating', rating);
-    data.append('userId', userId);
-    data.append('address', address);
-    data.append('image', image);
     fetch(`${API_BASE_URL}/spots`, {
         method: 'GET',
         headers: {
@@ -224,9 +204,9 @@ export const submitEditSpot = (lat, lng, name, notes, rating, address, image, au
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${authToken}`,
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/json'
             },
-            body: data,
+            body: JSON.stringify({lat, lng, name, notes, rating, userId, address, image}),
         })
         )
     })

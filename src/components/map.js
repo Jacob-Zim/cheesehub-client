@@ -209,7 +209,6 @@ export class SpotList extends React.Component {
                         this.props.auth.authToken,
                         this.props.auth.currentUser
                         );
-                        className="createSpotForm editSpotBox"
                     }}>
                         <button className="infoBoxCloseBtn" onClick={() => this.props.closeSpot()}>X</button>
                         <label className="labelFont" htmlFor="spotName">name</label>
