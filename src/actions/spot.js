@@ -5,6 +5,11 @@ export const fetchSpotRequest = () => ({
     type: FETCH_SPOT_REQUEST
 });
 
+export const MIN_MAX_SUCCESS = 'MIN_MAX_SUCCESS';
+export const minMaxSuccess = () => ({
+    type: MIN_MAX_SUCCESS
+});
+
 export const FETCH_SPOT_SUCCESS = 'FETCH_SPOT_SUCCESS';
 export const fetchSpotSuccess = (res) => ({
     type: FETCH_SPOT_SUCCESS,

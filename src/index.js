@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Map from './components/map';
+import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware, combineReducers} from 'redux';
@@ -18,7 +18,7 @@ const store = createStore(
 
 ReactDOM.render(
 <Provider store={store}>
-    <Map />
+    <App />
 </Provider>
 ,
  document.getElementById('root'));

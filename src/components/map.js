@@ -23,7 +23,8 @@ import {
     editSpot,
     submitEditSpot,
     cancelEdit,
-    setMap
+    setMap,
+    minMaxSuccess
 } from '../actions/spot';
 
 import { 
@@ -242,10 +243,26 @@ export class SpotList extends React.Component {
         if (this.props.spotList.info) {
             info = <InfoPopup />;
         }
+        let arrow;
+        let minMax;
+        let header;
+        if (this.props.minimized) {
+            arrow = 'down-arrow';
+            minMax = 'maximize';
+            header = "";
+        }
+        else {
+            header = <Header />
+            arrow = 'up-arrow';
+            minMax = "minimize";
+        }
 
         return (
             <div className="map-container">
-            <Header />
+            {header}
+            <div className={`${minMax}`} onClick={() => {
+                this.props.minMaxSuccess();
+            }}><a className={`${arrow}`}></a></div>
             {info}
             <div className="map">
             <MyMap
@@ -255,7 +272,7 @@ export class SpotList extends React.Component {
                     mapElement={<div style={{ height: `100%` }} />}
                     center={this.props.spotList.defaultCenter}
                     zoom={this.props.spotList.defaultZoom}
-                />
+            />
             </div>
             {form}
             </div>
@@ -265,7 +282,8 @@ export class SpotList extends React.Component {
 
 const mapStateToProps = (state) => ({
     spotList: state.spot,
-    auth: state.auth
+    auth: state.auth,
+    minimized: state.spot.minimized
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -282,7 +300,8 @@ const mapDispatchToProps = (dispatch) => {
         editSpot,
         cancelEdit,
         submitEditSpot,
-        setMap
+        setMap,
+        minMaxSuccess
     }, dispatch);
   };
 

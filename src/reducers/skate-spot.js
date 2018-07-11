@@ -1,5 +1,6 @@
 
 import {
+    MIN_MAX_SUCCESS,
     FETCH_SPOT_REQUEST,
     FETCH_SPOT_SUCCESS,
     FETCH_SPOT_ERROR,
@@ -30,7 +31,8 @@ const initialState = {
   hoverSpot: false,
   editing: false,
   _map: false,
-  info: false
+  info: false,
+  minimized: false
 };
 
 export default function spotReducer(state = initialState, action) {
@@ -157,6 +159,11 @@ export default function spotReducer(state = initialState, action) {
     else if (action.type === GET_INFO) {
         return Object.assign({}, state, {
             info: !state.info
+        });
+    }
+    else if (action.type === MIN_MAX_SUCCESS) {
+        return Object.assign({}, state, {
+            minimized: !state.minimized
         });
     }
     return state;

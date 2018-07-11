@@ -87,3 +87,9 @@ h1 {
             top: -200px;
         }
     }
+
+    @media only screen and (max-width: 536px) {
+        .registerBtn {
+            top: -200px;
+        }
+    }
