@@ -256,6 +256,9 @@ export class SpotList extends React.Component {
             arrow = 'up-arrow';
             minMax = "minimize";
         }
+        if (this.props.auth.currentUser) {
+            arrow = "";
+        }
 
         return (
             <div className="map-container">
