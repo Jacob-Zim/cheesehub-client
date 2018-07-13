@@ -9,12 +9,10 @@ class Frontpage extends Component {
     return (
       <div>
         <div className="landing-bkg" role="img" aria-label="skateboarder">
-          <div className="landing-container">
-          <h1 className="landing-header">Skatespots</h1>
-          <h2 className="landing-subHeader">Find your new favorite place to skate</h2>
-          </div>
         </div>
-        <Link className="map-link" to="/map">Map</Link>
+        <h1 className="landing-header">Skatespots</h1>
+        <h2 className="landing-subHeader">Find your new favorite place to skate</h2>
+        <Link className="map-link" to="/map">Enter</Link>
       </div>
     );
   }
