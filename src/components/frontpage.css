@@ -1,0 +1,42 @@
+.landing-bkg {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    background: url('../images/skatespotsFrontpage.jpg');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.landing-container {
+    display: block;
+    padding-top: 40%;
+    height: 0;
+}
+
+.landing-header {
+    position: absolute;
+    font-size: 5em;
+    top: 15%;
+    margin: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: -3px 0 black, 0 3px black, 1px 0 black, 0 -1px black;
+}
+
+.landing-subHeader {
+    position: absolute;
+    margin: 0;
+    font-size: 3em;
+    color: #00a2ff;
+    text-shadow: -3px 0 black, 0 3px black, 1px 0 black, 0 -1px black;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translateX(-50%);
+    top:30%;
+}
+
+.map-link {
+
+}

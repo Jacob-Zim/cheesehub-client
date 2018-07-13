@@ -18,8 +18,11 @@
     width: 70px;
     margin-right: 5px;
     border: black 1px solid;
+    color: black;
     border-radius: 2em;
-    background-color: none;
+    background-color: rgb(88, 196, 88);
+    font-size: 1.1em;
+    font-weight: bold;
 }
 
 .loginBtn:hover {
@@ -31,11 +34,13 @@
   width: 70px;
   border: black 1px solid;
   border-radius: 2em;
-  background-color: none;
+  background-color: rgb(105, 105, 221);
+  font-size: 1.1em;
+  font-weight: bold;
 }
 
 .demoBtn:hover {
-    background-color: rgb(16, 179, 16);
+    background-color: rgb(54, 54, 238);
 }
 
 .login-form {
@@ -49,6 +54,12 @@
 
 .passField {
     text-align: center;
+}
+
+.cancelReg {
+    background-color: lightcoral;
+    font-size: 1.1em;
+    font-weight: bold;
 }
 
 @media only screen and (max-width: 1100px) {

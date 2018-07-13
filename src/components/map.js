@@ -258,6 +258,7 @@ export class SpotList extends React.Component {
         }
         if (this.props.auth.currentUser) {
             arrow = "";
+            minMax = "";
         }
 
         return (

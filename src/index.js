@@ -9,6 +9,7 @@ import thunk from 'redux-thunk';
 import spotReducer from './reducers/skate-spot';
 import authReducer from './reducers/auth';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { BrowserRouter } from 'react-router-dom';
 
 const store = createStore(
     combineReducers({
@@ -17,9 +18,11 @@ const store = createStore(
     }), composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
-<Provider store={store}>
-    <App />
-</Provider>
+    <BrowserRouter>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </BrowserRouter>
 ,
  document.getElementById('root'));
 registerServiceWorker();

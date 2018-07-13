@@ -6,7 +6,7 @@
 }
 
 .infoBoxBkg {
-    background: rgb(158, 158, 158);
+    background: rgb(230, 230, 230);
     background-size: cover;
     border: black 1px solid;
     border-radius: 1.5em;
@@ -39,11 +39,11 @@
     margin-left: 10px;
     border: black 1px solid;
     border-radius: 2em;
-    background-color: none;
+    background-color: rgb(241, 82, 82);
 }
 
 .editBtn:hover {
-    background-color: rgba(65, 124, 180, 0.678);
+    background-color: rgb(105, 105, 221);
 }
 
 .editBtn {
@@ -51,7 +51,7 @@
     margin-right: 10px;
     border: black 1px solid;
     border-radius: 2em;
-    background-color: none;
+    background-color: rgba(65, 124, 180, 0.678);
 }
 
 .infoBoxCont {
@@ -74,7 +74,7 @@
     margin-right: 5px;
     border: black 1px solid;
     border-radius: 2em;
-    background-color: none;
+    background-color: lightgreen;
 }
 
 .submitSpot {
@@ -108,7 +108,7 @@
     margin-left: 5px;
     border: black 1px solid;
     border-radius: 2em;
-    background-color: none;
+    background-color: lightcoral;
 }
 
 .cancelEditBtn:hover {
@@ -169,6 +169,8 @@
     border: black 1px solid;
     border-radius: 2em;
     background-color: none;
+    background-color: rgb(155, 53, 53);
+    font-weight: bold;
 }
 
 .deleteBtnEditModeBtn:hover {
@@ -195,6 +197,13 @@
 
 .regSubmit {
     margin-left: 10px;
+    background-color: rgb(88, 196, 88);
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.regSubmit:hover {
+    background-color: rgb(16, 179, 16);
 }
 
 @media only screen and (max-width: 1100px)  {
