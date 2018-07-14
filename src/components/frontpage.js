@@ -27,9 +27,9 @@ class Frontpage extends Component {
         </a>
         <div className="info-holder">
           <h2 className="info-header">Find Places to skateboard</h2>
-          <p className="info-text">The map is populated with hundreds of spots for your discovery! If a user hasn't included many details of the spot, try using street view to check it out!</p>
+          <p className="info-text">The map is populated with hundreds of spots for your discovery! If a user hasn't included many details of the spot try using street view to check it out!</p>
           <h2 className="info-header">Share your favorite spots</h2>
-          <p className="info-text">By logging in and double tapping on the map, you're able to create a spot to share with the world! You're able to edit your spots with any updated information as well!</p>
+          <p className="info-text">By logging in and double tapping on the map you're able to create a spot to share with the world! You're able to edit your spots with any updated information as well!</p>
         </div>
       </div>
     );
