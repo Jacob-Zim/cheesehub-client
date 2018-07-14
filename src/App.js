@@ -9,7 +9,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Map />
+        <Switch>
+          <Route path="/map" component={Map} />
+          <Route path="/" component={Frontpage} />
+        </Switch>
       </div>
     );
   }
